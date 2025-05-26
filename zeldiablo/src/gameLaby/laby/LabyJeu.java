@@ -10,7 +10,7 @@ public class LabyJeu implements Jeu {
 
     public LabyJeu() {
         try {
-            this.laby = new Labyrinthe("labySimple/laby1.txt");
+            this.laby = new Labyrinthe("2025_Zeldiablo_meziani_biellmann_valeur--maselli_coquin/zeldiablo/labySimple");
         } catch (IOException e) {
             System.err.println("Erreur lors du chargement du labyrinthe : " + e.getMessage());
         }
