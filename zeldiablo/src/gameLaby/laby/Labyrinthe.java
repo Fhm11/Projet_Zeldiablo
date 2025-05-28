@@ -195,6 +195,4 @@ public class Labyrinthe {
         // utilise le tableau de boolean
         return this.murs[x][y];
     }
-
-
 }
