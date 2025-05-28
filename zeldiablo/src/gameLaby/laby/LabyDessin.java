@@ -15,29 +15,31 @@ public class LabyDessin implements DessinJeu {
     public void dessinerJeu(Jeu jeu, Canvas canvas) {
         LabyJeu lj = (LabyJeu) jeu;
         Labyrinthe laby = lj.getLaby();
-
         final GraphicsContext gc = canvas.getGraphicsContext2D();
 
         gc.setFill(Color.LIGHTGRAY);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        int nbrLigne = laby.getLength();
-        int nbrColonne = laby.getLengthY();
-        int dimension = (int) (canvas.getWidth()/nbrColonne);
 
-        for (int i=0;i<nbrLigne;i++){
+        int nbColonnes = laby.getLength();    // axe X
+        int nbLignes = laby.getLengthY();     // axe Y
+        int dimension = (int) (canvas.getWidth() / nbColonnes);
 
-            for (int j = 0;j<nbrColonne;j++){
-                if (laby.getMur(i,j)){
+        for (int x = 0; x < nbColonnes; x++) {
+            for (int y = 0; y < nbLignes; y++) {
+                if (laby.getMur(x, y)) {
                     gc.setFill(Color.BLACK);
-                } else{
+                } else {
                     gc.setFill(Color.WHITE);
                 }
-                gc.fillRect(j*dimension,i*dimension,dimension,dimension);
-
+                gc.fillRect(x * dimension, y * dimension, dimension, dimension);
             }
-
         }
 
-
+        // Dessiner le personnage
+        Perso p = lj.getPerso();
+        if (p != null) {
+            gc.setFill(Color.RED);
+            gc.fillOval(p.getX() * dimension, p.getY() * dimension, dimension, dimension);
+        }
     }
 }
