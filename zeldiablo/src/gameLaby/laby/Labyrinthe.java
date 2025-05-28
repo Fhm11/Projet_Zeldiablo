@@ -17,6 +17,7 @@ public class Labyrinthe {
     public static final char MUR = 'X';
     public static final char PJ = 'P';
     public static final char VIDE = '.';
+    public static final char MONSTRE = 'M';
 
     /**
      * constantes actions possibles
@@ -35,6 +36,8 @@ public class Labyrinthe {
      * les murs du labyrinthe
      */
     public boolean[][] murs;
+
+    public Monstre monstre;
 
     /**
      * retourne la case suivante selon une actions
@@ -59,7 +62,7 @@ public class Labyrinthe {
                 x++;
                 break;
             case GAUCHE:
-                // on augmente colonne
+                // on diminue colonne
                 x--;
                 break;
             default:
@@ -90,6 +93,7 @@ public class Labyrinthe {
         // creation labyrinthe vide
         this.murs = new boolean[nbColonnes][nbLignes];
         this.pj = null;
+        this.monstre = null;
 
         // lecture des cases
         String ligne = bfRead.readLine();
@@ -116,7 +120,16 @@ public class Labyrinthe {
                         // ajoute PJ
                         this.pj = new Perso(colonne, numeroLigne);
                         break;
-
+                    case MONSTRE:
+                        this.murs[colonne][numeroLigne] = false;
+                        if (this.pj != null && this.pj.x == colonne && this.pj.y == numeroLigne) {
+                            throw new Error("Le monstre ne peut pas être sur la même case que le personnage !");
+                        }
+                        if (this.monstre != null) {
+                            throw new Error("Plus d'un monstre détecté !");
+                        }
+                        this.monstre = new Monstre(colonne, numeroLigne);
+                        break;
                     default:
                         throw new Error("caractere inconnu " + c);
                 }
@@ -194,5 +207,9 @@ public class Labyrinthe {
     public boolean getMur(int x, int y) {
         // utilise le tableau de boolean
         return this.murs[x][y];
+    }
+
+    public Monstre getMonstre() {
+        return this.monstre;
     }
 }
