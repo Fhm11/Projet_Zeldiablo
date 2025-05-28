@@ -1,0 +1,48 @@
+@startuml
+actor Utilisateur
+participant MainLaby
+participant LabyJeu
+participant LabyDessin
+participant MoteurJeu
+participant Clavier
+participant Canvas
+
+activate Utilisateur
+activate MainLaby
+Utilisateur -> MainLaby : lancer application
+
+MainLaby -> LabyJeu : new LabyJeu()
+activate LabyJeu #0000FF
+
+MainLaby -> LabyDessin : new LabyDessin()
+activate LabyDessin #B329C4
+
+MainLaby -> MoteurJeu : launchGame(jeu, dessin)
+activate MoteurJeu #00FF00
+loop boucle de jeu (à chaque frame)
+    MoteurJeu -> Clavier : getTouches()
+    activate Clavier
+    Clavier --> MoteurJeu
+    deactivate Clavier
+    MoteurJeu --> LabyJeu : update(sec, clavier)
+    LabyJeu -> Labyrinthe : getPerso().deplacer(...)
+    activate Labyrinthe
+    Labyrinthe --> LabyJeu
+    deactivate Labyrinthe
+    MoteurJeu --> LabyDessin : dessinerJeu(jeu, canvas)
+    deactivate MoteurJeu
+    LabyDessin --> LabyJeu : getLabyrinthe()
+    LabyDessin -> Canvas : draw()
+    activate Canvas
+    Canvas -->LabyDessin
+    deactivate Canvas
+    LabyDessin --> LabyJeu
+    deactivate LabyDessin
+end
+    LabyJeu --> MainLaby
+    deactivate LabyJeu
+
+MainLaby --> Utilisateur
+deactivate MainLaby
+deactivate Utilisateur
+@enduml
