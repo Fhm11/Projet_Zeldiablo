@@ -1,16 +1,23 @@
 package gameLaby.laby;
-
-import moteurJeu.DessinJeu;
-import moteurJeu.Jeu;
 import moteurJeu.MoteurJeu;
 
-public class MainLaby {
-    public static void main(String[] args) {
-        Jeu jeu = new LabyJeu();
-        DessinJeu dessin = new LabyDessin();
+import java.io.IOException;
 
-        MoteurJeu.setFPS(60);
-        MoteurJeu.setTaille(800, 600);
-        MoteurJeu.launch(jeu, dessin);
+public class MainLaby {
+    public static void main(String[] args) throws IOException {
+        int width = 800;
+        int height = 600;
+        int pFPS = 100;
+
+        // creation des objets
+        LabyJeu jeu_laby = new LabyJeu();
+        LabyDessin laby_dessin = new LabyDessin();
+
+        // parametrage du moteur de jeu
+        MoteurJeu.setTaille(height,width);
+        MoteurJeu.setFPS(pFPS);
+
+        // lancement du jeu
+        MoteurJeu.launch(jeu_laby, laby_dessin);
     }
 }
