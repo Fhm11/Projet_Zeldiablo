@@ -32,7 +32,7 @@ public class LabyDessin implements DessinJeu {
                 } else{
                     gc.setFill(Color.WHITE);
                 }
-                gc.fillRect(i*dimension,j*dimension,dimension,dimension);
+                gc.fillRect(j*dimension,i*dimension,dimension,dimension);
 
             }
 
