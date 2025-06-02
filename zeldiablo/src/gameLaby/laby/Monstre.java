@@ -1,7 +1,7 @@
 package gameLaby.laby;
 
 public class Monstre {
-
+    private static final int v = 100;
     private int x;
     private int y;
 
@@ -38,4 +38,44 @@ public class Monstre {
     public boolean estSurPosition(int px, int py) {
         return this.x == px && this.y == py;
     }
+
+
+    public boolean estmort(){
+        return this.v<=0;
+    }
+
+    public void deplacerMonstre(Labyrinthe laby, Perso perso) {
+        if(estmort()){
+            System.out.println("Monstre est mort");
+            return;
+        }
+        int[][] directions = {
+                {0, -1},  // h
+                {0, 1},   // b
+                {-1, 0},  // g
+                {1, 0}    // d
+        };
+
+        int choix = (int) (Math.random() * directions.length);
+        int[] dir = directions[choix];
+
+        int newX = x + dir[0];
+        int newY = y + dir[1];
+
+        if (newX < 0 || newY < 0 || newX >= laby.getLength() || newY >= laby.getLengthY()) {
+            return;
+        }
+
+        if (laby.getMur(newX, newY)) {
+            return;
+        }
+
+        if (newX == perso.getX() && newY == perso.getY()) {
+            return;
+        }
+
+        this.x = newX;
+        this.y = newY;
+    }
+
 }
