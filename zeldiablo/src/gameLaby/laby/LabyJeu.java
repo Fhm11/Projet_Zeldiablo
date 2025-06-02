@@ -26,14 +26,17 @@ public class LabyJeu implements Jeu {
      * @param clavier objet contenant l'état du clavier'
      */
     public void update(double secondes, Clavier clavier) {
-        if (clavier.haut) {
+        if (clavier.haut && !perso.estmort()) {
             laby.deplacerPerso(Labyrinthe.HAUT);
-        } else if (clavier.bas) {
+        } else if (clavier.bas && !perso.estmort()) {
             laby.deplacerPerso(Labyrinthe.BAS);
-        } else if (clavier.gauche) {
+        } else if (clavier.gauche && !perso.estmort()) {
             laby.deplacerPerso(Labyrinthe.GAUCHE);
-        } else if  (clavier.droite) {
+        } else if  (clavier.droite && !perso.estmort()) {
             laby.deplacerPerso(Labyrinthe.DROITE);
+        }
+        if (monstre != null && !monstre.estmort()) {
+            monstre.deplacerMonstre(laby, perso);
         }
     }
 
