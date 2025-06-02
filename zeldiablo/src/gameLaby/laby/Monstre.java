@@ -4,6 +4,7 @@ public class Monstre {
     private int x;
     private int y;
     private int v;
+    private double t = 0;
 
     /**
      * Constructeur du monstre.
@@ -45,11 +46,19 @@ public class Monstre {
         return this.v<=0;
     }
 
-    public void deplacerMonstre(Labyrinthe laby, Perso perso) {
+    public void deplacerMonstre(Labyrinthe laby, Perso perso, double secondes) {
         if(estmort()){
             System.out.println("Monstre est mort");
             return;
         }
+
+        t += secondes;
+
+        if (t < 0.5) {
+            return; // pas encore le temps de bouger
+        }
+
+        t=0;
         int[][] directions = {
                 {0, -1},  // h
                 {0, 1},   // b
