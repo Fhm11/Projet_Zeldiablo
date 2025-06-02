@@ -10,7 +10,6 @@ import moteurJeu.Jeu;
 
 import java.util.List;
 
-
 public class LabyDessin implements DessinJeu {
 
     @Override
@@ -22,8 +21,8 @@ public class LabyDessin implements DessinJeu {
         gc.setFill(Color.LIGHTGRAY);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
-        int nbColonnes = laby.getLength();    // axe X
-        int nbLignes = laby.getLengthY();     // axe Y
+        int nbColonnes = laby.getLength(); // axe X
+        int nbLignes = laby.getLengthY(); // axe Y
         int dimension = (int) (canvas.getWidth() / nbColonnes);
 
         for (int x = 0; x < nbColonnes; x++) {

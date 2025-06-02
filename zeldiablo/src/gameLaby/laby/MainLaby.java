@@ -1,9 +1,17 @@
 package gameLaby.laby;
-import moteurJeu.MoteurJeu;
 
 import java.io.IOException;
+import moteurJeu.MoteurJeu;
 
+/**
+ * Classe principale pour lancer le jeu du labyrinthe.
+ */
 public class MainLaby {
+    /**
+     * Point d'entrée du programme. Initialise et lance le jeu.
+     * 
+     * @param args arguments de la ligne de commande (non utilisés)
+     */
     public static void main(String[] args) throws IOException {
         int width = 600;
         int height = 800;
@@ -14,7 +22,7 @@ public class MainLaby {
         LabyDessin laby_dessin = new LabyDessin();
 
         // parametrage du moteur de jeu
-        MoteurJeu.setTaille(height,width);
+        MoteurJeu.setTaille(height, width);
         MoteurJeu.setFPS(pFPS);
 
         // lancement du jeu

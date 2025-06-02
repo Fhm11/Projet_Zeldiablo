@@ -43,14 +43,14 @@ public class Perso {
      */
     public void attaquer(List<Monstre> monstres) {
         for (Monstre m : monstres) {
-            if (m.estmort()) continue;
+            if (m.estmort())
+                continue;
             int mx = m.getX();
             int my = m.getY();
-            boolean estAdjacent =
-                    (mx == this.x + 1 && my == this.y) || // droite
-                            (mx == this.x - 1 && my == this.y) || // gauche
-                            (mx == this.x && my == this.y + 1) || // bas
-                            (mx == this.x && my == this.y - 1);   // haut
+            boolean estAdjacent = (mx == this.x + 1 && my == this.y) || // droite
+                    (mx == this.x - 1 && my == this.y) || // gauche
+                    (mx == this.x && my == this.y + 1) || // bas
+                    (mx == this.x && my == this.y - 1); // haut
 
             if (estAdjacent) {
                 m.prendreDegat(100);
@@ -58,11 +58,9 @@ public class Perso {
         }
     }
 
-    public boolean estmort(){
-        return this.v<=0;
+    public boolean estmort() {
+        return this.v <= 0;
     }
-
-
 
     // ############################################
     // GETTER
@@ -80,18 +78,33 @@ public class Perso {
      * @return position y du personnage
      */
     public int getY() {
-        //getter
+        // getter
         return this.y;
     }
 
+    /**
+     * Modifie la position y du personnage.
+     * 
+     * @param y nouvelle position y
+     */
     public void setY(int y) {
         this.y = y;
     }
 
+    /**
+     * Modifie la position x du personnage.
+     * 
+     * @param x nouvelle position x
+     */
     public void setX(int x) {
         this.x = x;
     }
 
+    /**
+     * Retourne la vie actuelle du personnage.
+     * 
+     * @return la vie du personnage
+     */
     public int getV() {
         return v;
     }

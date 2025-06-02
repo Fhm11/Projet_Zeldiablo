@@ -7,8 +7,12 @@ import java.util.*;
 
 /**
  * classe labyrinthe. represente un labyrinthe avec
- * <ul> des murs </ul>
- * <ul> un personnage (x,y) </ul>
+ * <ul>
+ * des murs
+ * </ul>
+ * <ul>
+ * un personnage (x,y)
+ * </ul>
  */
 public class Labyrinthe {
 
@@ -38,10 +42,10 @@ public class Labyrinthe {
      */
     public boolean[][] murs;
 
-
     private List<Monstre> monstres;
 
-    // constructeur fait pour les test et cree un labyreithe d une longeuru et largeur evec 0 murs
+    // constructeur fait pour les test et cree un labyreithe d une longeuru et
+    // largeur evec 0 murs
     public Labyrinthe(int largeur, int hauteur) {
         murs = new boolean[largeur][hauteur];
         for (int x = 0; x < largeur; x++) {
@@ -51,7 +55,6 @@ public class Labyrinthe {
         }
         this.monstres = new ArrayList<>();
     }
-
 
     /**
      * retourne la case suivante selon une actions
@@ -82,7 +85,7 @@ public class Labyrinthe {
             default:
                 throw new Error("action inconnue");
         }
-        int[] res = {x, y};
+        int[] res = { x, y };
         return res;
     }
 
@@ -155,7 +158,6 @@ public class Labyrinthe {
         bfRead.close();
     }
 
-
     /**
      * deplace le personnage en fonction de l'action.
      * gere la collision avec les murs
@@ -164,7 +166,7 @@ public class Labyrinthe {
      */
     public void deplacerPerso(String action) {
         // case courante
-        int[] courante = {this.pj.x, this.pj.y};
+        int[] courante = { this.pj.x, this.pj.y };
 
         // calcule case suivante
         int[] suivante = getSuivant(courante[0], courante[1], action);
@@ -188,8 +190,6 @@ public class Labyrinthe {
         }
         return false;
     }
-
-
 
     /**
      * jamais fini
@@ -218,9 +218,9 @@ public class Labyrinthe {
     }
 
     /**
-     * return taille selon X
+     * Retourne la taille du labyrinthe selon X (nombre de colonnes).
      *
-     * @return
+     * @return nombre de colonnes du labyrinthe
      */
     public int getLength() {
         return murs.length;
@@ -238,17 +238,33 @@ public class Labyrinthe {
         return this.murs[x][y];
     }
 
+    /**
+     * Retourne le personnage du labyrinthe.
+     *
+     * @return le personnage
+     */
     public Perso getPerso() {
         return this.pj;
     }
 
+    /**
+     * Retourne la liste des monstres présents dans le labyrinthe.
+     *
+     * @return liste des monstres
+     */
     public List<Monstre> getMonstres() {
         return this.monstres;
     }
 
+    /**
+     * Indique si la case (x, y) est un mur.
+     *
+     * @param x abscisse de la case
+     * @param y ordonnée de la case
+     * @return true si la case est un mur, false sinon
+     */
     public void setMur(int x, int y, boolean estMur) {
         murs[x][y] = estMur;
     }
-
 
 }
