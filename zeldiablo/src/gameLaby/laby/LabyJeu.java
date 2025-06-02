@@ -4,17 +4,18 @@ import moteurJeu.Clavier;
 import moteurJeu.Jeu;
 
 import java.io.IOException;
+import java.util.*;
 
 public class LabyJeu implements Jeu {
     private Labyrinthe laby;
     private Perso perso;
-    private Monstre monstre;
+    private List<Monstre> monstres;
 
     public LabyJeu() {
         try {
             this.laby = new Labyrinthe("zeldiablo\\labySimple\\laby2.txt");
             this.perso = this.laby.getPerso();
-            this.monstre = this.laby.getMonstre();
+            this.monstres = this.laby.getMonstres();
         } catch (IOException e) {
             System.err.println("Erreur lors du chargement du labyrinthe : " + e.getMessage());
         }
@@ -35,9 +36,15 @@ public class LabyJeu implements Jeu {
         } else if  (clavier.droite && !perso.estmort()) {
             laby.deplacerPerso(Labyrinthe.DROITE);
         }
-        if (monstre != null && !monstre.estmort()) {
-            monstre.deplacerMonstre(laby, perso, secondes);
+        for (Monstre m : monstres) {
+            if (!m.estmort()) {
+                m.deplacerMonstre(laby, perso, secondes);
+            }
         }
+        if (clavier.espace && !perso.estmort()) {
+            perso.attaquer(monstres);
+        }
+        laby.nettoyerMonstresMorts();
       
     }
 
@@ -62,7 +69,7 @@ public class LabyJeu implements Jeu {
 
     public Perso getPerso(){return this.perso;}
 
-    public Monstre getMonstre() {
-        return this.monstre;
+    public List<Monstre> getMonstres() {
+        return this.monstres;
     }
 }

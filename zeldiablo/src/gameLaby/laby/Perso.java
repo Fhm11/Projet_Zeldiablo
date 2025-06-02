@@ -52,7 +52,7 @@ public class Perso {
                             (mx == this.x && my == this.y - 1);   // haut
 
             if (estAdjacent) {
-                m.prendreDegat(1);
+                m.prendreDegat(100);
             }
         }
     }
@@ -60,6 +60,8 @@ public class Perso {
     public boolean estmort(){
         return this.v<=0;
     }
+
+
 
     // ############################################
     // GETTER
