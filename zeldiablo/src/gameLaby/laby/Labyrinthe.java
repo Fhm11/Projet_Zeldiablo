@@ -107,7 +107,7 @@ public class Labyrinthe {
         // creation labyrinthe vide
         this.murs = new boolean[nbColonnes][nbLignes];
         this.pj = null;
-        this.monstre = null;
+        this.monstres = null;
 
         // lecture des cases
         String ligne = bfRead.readLine();
@@ -139,10 +139,10 @@ public class Labyrinthe {
                         if (this.pj != null && this.pj.x == colonne && this.pj.y == numeroLigne) {
                             throw new Error("Le monstre ne peut pas être sur la même case que le personnage !");
                         }
-                        if (this.monstre != null) {
+                        if (this.monstres != null) {
                             throw new Error("Plus d'un monstre détecté !");
                         }
-                        this.monstre = new Monstre(colonne, numeroLigne);
+                        this.monstres = new Monstre(colonne, numeroLigne);
                         break;
                     default:
                         throw new Error("caractere inconnu " + c);
