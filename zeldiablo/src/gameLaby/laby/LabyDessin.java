@@ -41,5 +41,12 @@ public class LabyDessin implements DessinJeu {
             gc.setFill(Color.RED);
             gc.fillOval(p.getX() * dimension, p.getY() * dimension, dimension, dimension);
         }
+
+        // Dessiner le monstre
+        Monstre m = lj.getMonstre();
+        if (m != null) {
+            gc.setFill(Color.PURPLE);
+            gc.fillOval(m.getX() * dimension, m.getY() * dimension, dimension, dimension);
+        }
     }
 }

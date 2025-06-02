@@ -8,11 +8,13 @@ import java.io.IOException;
 public class LabyJeu implements Jeu {
     private Labyrinthe laby;
     private Perso perso;
+    private Monstre monstre;
 
     public LabyJeu() {
         try {
             this.laby = new Labyrinthe("zeldiablo\\labySimple\\laby1.txt");
             this.perso = this.laby.getPerso();
+            this.monstre = this.laby.getMonstre();
         } catch (IOException e) {
             System.err.println("Erreur lors du chargement du labyrinthe : " + e.getMessage());
         }
@@ -55,4 +57,8 @@ public class LabyJeu implements Jeu {
     }
 
     public Perso getPerso(){return this.perso;}
+
+    public Monstre getMonstre() {
+        return this.monstre;
+    }
 }
