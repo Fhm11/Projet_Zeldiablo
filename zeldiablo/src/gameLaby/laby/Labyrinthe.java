@@ -216,4 +216,10 @@ public class Labyrinthe {
     public Monstre getMonstre() {
         return this.monstre;
     }
+
+    public void setMur(int x, int y, boolean estMur) {
+        murs[x][y] = estMur;
+    }
+
+
 }
