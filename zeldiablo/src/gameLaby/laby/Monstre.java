@@ -1,13 +1,17 @@
 package gameLaby.laby;
 
+/**
+ * Classe représentant un monstre
+ */
 public class Monstre {
-    private int x;
-    private int y;
-    private int v;
-    private double t = 0;
+    private int x; // Position x du monstre
+    private int y; // Position y du monstre
+    private int v; // Vie du monstre
+    private double t = 0; // Temps écoulé depuis le dernier déplacement
 
     /**
      * Constructeur du monstre.
+     * 
      * @param x position en x
      * @param y position en y
      */
@@ -18,6 +22,8 @@ public class Monstre {
     }
 
     /**
+     * Retourne la position x du monstre.
+     * 
      * @return la position x du monstre
      */
     public int getX() {
@@ -25,6 +31,8 @@ public class Monstre {
     }
 
     /**
+     * Retourne la position y du monstre.
+     * 
      * @return la position y du monstre
      */
     public int getY() {
@@ -32,22 +40,38 @@ public class Monstre {
     }
 
     /**
-     * Vérifie si le monstre est à la même position qu'une position donnée
+     * Vérifie si le monstre est à la même position qu'une position donnée.
+     * 
      * @param px position x testée
      * @param py position y testée
-     * @return vrai si même position
+     * @return vrai si même position, faux sinon
      */
     public boolean estSurPosition(int px, int py) {
         return this.x == px && this.y == py;
     }
 
-
-    public boolean estmort(){
-        return this.v<=0;
+    /**
+     * Vérifie si le monstre est mort (vie inférieure ou égale à 0).
+     * 
+     * @return vrai si le monstre est mort, faux sinon
+     */
+    public boolean estmort() {
+        return this.v <= 0;
     }
 
+    /**
+     * Déplace le monstre dans le labyrinthe si possible.
+     * Le déplacement est aléatoire et ne se fait que si un certain temps s'est
+     * écoulé.
+     * Le monstre ne peut pas traverser les murs, ni aller sur la case du personnage
+     * ou d'un autre monstre.
+     * 
+     * @param laby     le labyrinthe dans lequel se trouve le monstre
+     * @param perso    le personnage à éviter
+     * @param secondes temps écoulé depuis la dernière mise à jour
+     */
     public void deplacerMonstre(Labyrinthe laby, Perso perso, double secondes) {
-        if(estmort()){
+        if (estmort()) {
             System.out.println("Monstre est mort");
             return;
         }
@@ -58,12 +82,12 @@ public class Monstre {
             return; // pas encore le temps de bouger
         }
 
-        t=0;
+        t = 0;
         int[][] directions = {
-                {0, -1},  // h
-                {0, 1},   // b
-                {-1, 0},  // g
-                {1, 0}    // d
+                { 0, -1 }, // haut
+                { 0, 1 }, // bas
+                { -1, 0 }, // gauche
+                { 1, 0 } // droite
         };
 
         int choix = (int) (Math.random() * directions.length);
@@ -83,16 +107,27 @@ public class Monstre {
         if (newX == perso.getX() && newY == perso.getY()) {
             return;
         }
-        if (laby.estCaseOccupeeParMonstre(newX, newY)) return;
+        if (laby.estCaseOccupeeParMonstre(newX, newY))
+            return;
 
         this.x = newX;
         this.y = newY;
     }
 
+    /**
+     * Inflige des dégâts au monstre.
+     * 
+     * @param degats nombre de points de vie à retirer
+     */
     public void prendreDegat(int degats) {
         this.v -= degats;
     }
 
+    /**
+     * Retourne la vie actuelle du monstre.
+     * 
+     * @return la vie du monstre
+     */
     public int getV() {
         return v;
     }
