@@ -170,11 +170,14 @@ public class Labyrinthe {
         // calcule case suivante
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
-        // si c'est pas un mur, on effectue le deplacement
-        if (!this.murs[suivante[0]][suivante[1]]) {
-            // on met a jour personnage
-            this.pj.x = suivante[0];
-            this.pj.y = suivante[1];
+        int xSuiv = suivante[0];
+        int ySuiv = suivante[1];
+
+        // vérifie que la case n'est pas un mur ET que ce n'est pas la case du monstre
+        if (!this.murs[xSuiv][ySuiv] && !(this.monstre != null && this.monstre.getX() == xSuiv && this.monstre.getY() == ySuiv)) {
+            // on met à jour la position du personnage
+            this.pj.x = xSuiv;
+            this.pj.y = ySuiv;
         }
     }
 
