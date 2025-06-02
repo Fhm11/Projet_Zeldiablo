@@ -1,0 +1,18 @@
+1. Déplacer le monstre
+- Descriptif :
+  - lorsque le jeu évolue, le monstre choisit une case adjacente de manière aléatoire et tente de s'y déplacer.
+- Critères de validation :
+  - le monstre doit se déplacer sur une case adjacente. Il considère les 4 directions de déplacement possibles.
+  - le monstre ne peut pas se déplacer sur mur. S'il tente de se déplacer sur cette case, il ne bouge pas.
+  - le monstre ne peut pas se trouver sur la même case que le personnage.
+  
+2. Attaque du joueur
+ - Descriptif :
+     Lorsque le joueur appuie sur une touche donnée (par défaut la touche espace), il
+     effectue une attaque contre les monstres qui se trouvent à côté de lui.
+ - Critères de validation :
+     L'attaque a effectivement lieu quand le joueur appuie sur la touche.
+     TOUS les monstres à côté du joueur prennent un point de dégât.
+     TOUS les monstres éloignés du joueur ne subissent pas de dégâts.
+     S'il n'y a aucun monstre autour du joueur, l'attaque à quand même lieu et empêche
+     le déplacement du joueur, mais les monstres ne prennent pas de dégâts.
