@@ -180,7 +180,7 @@ public class Labyrinthe {
         }
     }
 
-    private boolean estCaseOccupeeParMonstre(int x, int y) {
+    public boolean estCaseOccupeeParMonstre(int x, int y) {
         for (Monstre m : monstres) {
             if (!m.estmort() && m.getX() == x && m.getY() == y) {
                 return true;
