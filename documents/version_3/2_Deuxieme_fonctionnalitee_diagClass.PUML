@@ -18,7 +18,8 @@ class Labyrinthe {
     +void deplacerPerso(sgtring action)
     +boolean etreFini()
     +Monstre getMonstre()
-}
+    +void setmur(int x, int y, boolean estmur)
+    }
 
 class Perso {
     -int x
@@ -27,6 +28,8 @@ class Perso {
     +void deplacer(Direction dir, Labyrinthe laby)
     +int getX()
     +int getY()
+    +void attaquer(List<Monstre> monstres)
+    +etremort()
 }
 
 class LabyJeu {
@@ -47,10 +50,16 @@ class MainLaby {
 }
 
 class Monstre{
-    + void deplacerMonstre(Labyrinthe:laby, Perso:perso)
+    -double t=0
+    -int v
+    -int x
+    -int y
+    + void deplacerMonstre(Labyrinthe:laby, Perso:perso, double seconde)
     + boolean estSurPosition(int px, int py)
     + int getY()
     + int getX()
+    + void prendreDegat(int degats)
+    + boolean etremort()
 }
 
 Labyrinthe --> "1" Monstre : -monstre

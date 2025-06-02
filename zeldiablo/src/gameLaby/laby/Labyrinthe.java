@@ -178,7 +178,7 @@ public class Labyrinthe {
             this.pj.x = xSuiv;
             this.pj.y = ySuiv;
         }
-    }
+    }   
 
     private boolean estCaseOccupeeParMonstre(int x, int y) {
         for (Monstre m : monstres) {
