@@ -3,6 +3,7 @@ package gameLaby.laby;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.*;
 
 /**
  * classe labyrinthe. represente un labyrinthe avec
@@ -37,7 +38,8 @@ public class Labyrinthe {
      */
     public boolean[][] murs;
 
-    public Monstre monstre;
+
+    private List<Monstre> monstres;
 
     // constructeur fait pour les test et cree un labyreithe d une longeuru et largeur evec 0 murs
     public Labyrinthe(int largeur, int hauteur) {
