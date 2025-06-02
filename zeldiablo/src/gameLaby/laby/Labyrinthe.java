@@ -49,8 +49,8 @@ public class Labyrinthe {
                 murs[x][y] = false;
             }
         }
+        this.monstres = new ArrayList<>();
     }
-
 
 
     /**
@@ -107,7 +107,7 @@ public class Labyrinthe {
         // creation labyrinthe vide
         this.murs = new boolean[nbColonnes][nbLignes];
         this.pj = null;
-        this.monstre = null;
+        this.monstres = new ArrayList<>();
 
         // lecture des cases
         String ligne = bfRead.readLine();
@@ -139,10 +139,7 @@ public class Labyrinthe {
                         if (this.pj != null && this.pj.x == colonne && this.pj.y == numeroLigne) {
                             throw new Error("Le monstre ne peut pas être sur la même case que le personnage !");
                         }
-                        if (this.monstre != null) {
-                            throw new Error("Plus d'un monstre détecté !");
-                        }
-                        this.monstre = new Monstre(colonne, numeroLigne);
+                        this.monstres.add(new Monstre(colonne, numeroLigne));
                         break;
                     default:
                         throw new Error("caractere inconnu " + c);
@@ -176,11 +173,20 @@ public class Labyrinthe {
         int ySuiv = suivante[1];
 
         // vérifie que la case n'est pas un mur ET que ce n'est pas la case du monstre
-        if (!this.murs[xSuiv][ySuiv] && !(this.monstre != null && this.monstre.getX() == xSuiv && this.monstre.getY() == ySuiv)) {
+        if (!this.murs[xSuiv][ySuiv] && !estCaseOccupeeParMonstre(xSuiv, ySuiv)) {
             // on met à jour la position du personnage
             this.pj.x = xSuiv;
             this.pj.y = ySuiv;
         }
+    }
+
+    private boolean estCaseOccupeeParMonstre(int x, int y) {
+        for (Monstre m : monstres) {
+            if (!m.estmort() && m.getX() == x && m.getY() == y) {
+                return true;
+            }
+        }
+        return false;
     }
 
 
@@ -191,6 +197,10 @@ public class Labyrinthe {
      */
     public boolean etreFini() {
         return false;
+    }
+
+    public void nettoyerMonstresMorts() {
+        monstres.removeIf(monstre -> monstre.estmort());
     }
 
     // ##################################
@@ -217,6 +227,7 @@ public class Labyrinthe {
 
     /**
      * return mur en (i,j)
+     *
      * @param x
      * @param y
      * @return
@@ -230,8 +241,8 @@ public class Labyrinthe {
         return this.pj;
     }
 
-    public Monstre getMonstre() {
-        return this.monstre;
+    public List<Monstre> getMonstres() {
+        return this.monstres;
     }
 
     public void setMur(int x, int y, boolean estMur) {
