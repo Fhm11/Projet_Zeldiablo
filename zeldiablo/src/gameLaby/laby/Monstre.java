@@ -83,6 +83,7 @@ public class Monstre {
         if (newX == perso.getX() && newY == perso.getY()) {
             return;
         }
+        if (laby.estCaseOccupeeParMonstre(newX, newY)) return;
 
         this.x = newX;
         this.y = newY;
@@ -92,4 +93,7 @@ public class Monstre {
         this.v -= degats;
     }
 
+    public int getV() {
+        return v;
+    }
 }

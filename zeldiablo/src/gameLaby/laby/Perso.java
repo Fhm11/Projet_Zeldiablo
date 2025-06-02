@@ -43,6 +43,7 @@ public class Perso {
      */
     public void attaquer(List<Monstre> monstres) {
         for (Monstre m : monstres) {
+            if (m.estmort()) continue;
             int mx = m.getX();
             int my = m.getY();
             boolean estAdjacent =
@@ -81,5 +82,17 @@ public class Perso {
     public int getY() {
         //getter
         return this.y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getV() {
+        return v;
     }
 }
