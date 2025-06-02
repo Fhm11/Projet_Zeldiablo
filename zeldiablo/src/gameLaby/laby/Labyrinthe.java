@@ -188,7 +188,7 @@ public class Labyrinthe {
         }
         return false;
     }
-    
+
 
 
     /**
