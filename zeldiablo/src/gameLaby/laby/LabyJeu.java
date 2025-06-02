@@ -38,6 +38,7 @@ public class LabyJeu implements Jeu {
         if (monstre != null && !monstre.estmort()) {
             monstre.deplacerMonstre(laby, perso, secondes);
         }
+      
     }
 
     /**
