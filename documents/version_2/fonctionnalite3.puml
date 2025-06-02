@@ -1,0 +1,39 @@
+@startuml
+title Diagramme de séquence - Considérer le monstre dans les déplacements du personnage
+
+participant "laby : Labyrinthe" as laby
+participant "pj : Perso" as perso
+participant "monstre : Monstre" as monstre
+
+-> laby : deplacerPerso(action)
+activate laby
+
+laby -> perso : getX()
+activate perso
+perso --> laby : pj.x
+laby -> perso : getY()
+perso --> laby : pj.y
+deactivate perso
+
+laby -> laby : getSuivant(x, y, action)
+
+laby -> laby : murs[xSuiv][ySuiv]
+
+alt monstre != null
+    laby -> monstre : getX()
+    activate monstre
+    monstre --> laby : monstre.x
+    laby -> monstre : getY()
+    monstre --> laby : monstre.y
+    deactivate monstre
+end
+
+alt case libre (ni mur ni monstre)
+    laby -> perso : pj.x = setX(xSuiv)
+    laby -> perso : pj.y = setY(ySuiv)
+    
+end
+
+<-- laby
+deactivate laby
+@enduml
