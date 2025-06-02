@@ -1,5 +1,6 @@
 package gameLaby.laby;
 
+import java.util.List;
 
 /**
  * gere un personnage situe en x,y
@@ -9,7 +10,7 @@ public class Perso {
     /**
      * position du personnage
      */
-    int x, y;
+    int x, y, v;
 
     /**
      * constructeur
@@ -20,6 +21,7 @@ public class Perso {
     public Perso(int dx, int dy) {
         this.x = dx;
         this.y = dy;
+        this.v = 100;
     }
 
     /**
@@ -32,6 +34,31 @@ public class Perso {
     public boolean etrePresent(int dx, int dy) {
 
         return (this.x == dx && this.y == dy);
+    }
+
+    /**
+     * Le personnage attaque les monstres autour de lui (haut, bas, gauche, droite).
+     *
+     * @param monstres liste des monstres présents dans le labyrinthe
+     */
+    public void attaquer(List<Monstre> monstres) {
+        for (Monstre m : monstres) {
+            int mx = m.getX();
+            int my = m.getY();
+            boolean estAdjacent =
+                    (mx == this.x + 1 && my == this.y) || // droite
+                            (mx == this.x - 1 && my == this.y) || // gauche
+                            (mx == this.x && my == this.y + 1) || // bas
+                            (mx == this.x && my == this.y - 1);   // haut
+
+            if (estAdjacent) {
+                m.prendreDegat(1);
+            }
+        }
+    }
+
+    public boolean estmort(){
+        return this.v<=0;
     }
 
     // ############################################
