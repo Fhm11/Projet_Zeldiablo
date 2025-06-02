@@ -2,6 +2,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import gameLaby.laby.*;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
+import java.util.List;
 
 import java.io.IOException;
 
@@ -38,4 +39,43 @@ public class testLaby {
         assertEquals(4, laby.getPerso().getX());
         assertEquals(2, laby.getPerso().getY());
     }
+
+    @Test
+    public void testPositionInitialeMonstre() throws IOException {
+        Labyrinthe laby = new Labyrinthe("zeldiablo\\labySimple\\labyTest.txt"); // fichier avec 'M' connu
+        List<Monstre> monstres = laby.getMonstres();
+
+        assertEquals(1, monstres.size());
+
+        Monstre m = monstres.get(0);
+        assertEquals(4, m.getX());
+        assertEquals(3, m.getY());
+
+        Perso p = laby.getPerso();
+        assertFalse(m.getX() == p.getX() && m.getY() == p.getY());
+    }
+
+    @Test
+    public void testAffichageMonstrePosition() throws IOException {
+        Labyrinthe laby = new Labyrinthe("zeldiablo\\labySimple\\labyTest.txt");
+
+        List<Monstre> monstres = laby.getMonstres();
+
+        assertFalse(monstres.isEmpty(), "Il doit y avoir au moins un monstre dans le labyrinthe");
+
+        Monstre m = monstres.get(0);
+
+        // Monstre à la position attendue (x=4, y=3)
+        assertEquals(4, m.getX(), "Position X du monstre incorrecte");
+        assertEquals(3, m.getY(), "Position Y du monstre incorrecte");
+
+        // La case du monstre n'est pas un mur
+        assertFalse(laby.getMur(m.getX(), m.getY()), "Le monstre ne doit pas être sur un mur");
+
+        // Le monstre n'est pas sur la même case que le personnage
+        Perso p = laby.getPerso();
+        assertFalse(m.getX() == p.getX() && m.getY() == p.getY(), "Le monstre ne doit pas être sur la même case que le personnage");
+    }
+
+
 }
