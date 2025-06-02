@@ -39,6 +39,18 @@ public class Labyrinthe {
 
     public Monstre monstre;
 
+    // constructeur fait pour les test et cree un labyreithe d une longeuru et largeur evec 0 murs
+    public Labyrinthe(int largeur, int hauteur) {
+        murs = new boolean[largeur][hauteur];
+        for (int x = 0; x < largeur; x++) {
+            for (int y = 0; y < hauteur; y++) {
+                murs[x][y] = false;
+            }
+        }
+    }
+
+
+
     /**
      * retourne la case suivante selon une actions
      *
