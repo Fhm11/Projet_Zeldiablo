@@ -179,7 +179,7 @@ public class Labyrinthe {
             this.pj.x = xSuiv;
             this.pj.y = ySuiv;
         }
-    }
+    }   
 
 
     /**
