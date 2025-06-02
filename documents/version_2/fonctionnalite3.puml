@@ -15,23 +15,34 @@ laby -> perso : getY()
 perso --> laby : pj.y
 deactivate perso
 
-laby -> laby : getSuivant(x, y, action)
+laby -> laby : getSuivant(pj.x, pj.y, action)
+laby --> laby : int[] suivante {xSuiv, ySuiv}
 
 laby -> laby : murs[xSuiv][ySuiv]
+laby --> laby : boolean estMur
 
-alt monstre != null
-    laby -> monstre : getX()
+laby -> laby : estCaseOccupeeParMonstre(xSuiv, ySuiv)
+activate laby
+
+alt foreach monstre in monstres
+    laby -> monstre : estmort()
     activate monstre
-    monstre --> laby : monstre.x
-    laby -> monstre : getY()
-    monstre --> laby : monstre.y
+    monstre --> laby : boolean
+    alt monstre non mort
+        laby -> monstre : getX()
+        monstre --> laby : monstre.x
+        laby -> monstre : getY()
+        monstre --> laby : monstre.y
+    end
     deactivate monstre
 end
+laby --> laby : boolean caseOccupee
 
-alt case libre (ni mur ni monstre)
-    laby -> perso : pj.x = setX(xSuiv)
-    laby -> perso : pj.y = setY(ySuiv)
-    
+deactivate laby
+
+alt case libre (pas mur et pas occupée par monstre)
+    laby -> perso : pj.x = xSuiv
+    laby -> perso : pj.y = ySuiv
 end
 
 <-- laby
