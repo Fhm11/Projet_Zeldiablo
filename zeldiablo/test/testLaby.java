@@ -12,7 +12,7 @@ public class testLaby {
 
     @Test
     public void testDeplacementVersCaseVide() throws IOException {
-        laby = new Labyrinthe("zeldiablo\\labySimple\\labyTest.txt");
+        laby = new Labyrinthe("labySimple\\labyTest.txt");
         // Vers la droite (4,2) : case libre
         laby.deplacerPerso("Droite");
         assertEquals(4, laby.getPerso().getX());
@@ -21,7 +21,7 @@ public class testLaby {
 
     @Test
     public void testDeplacementVersMur() throws IOException{
-        laby = new Labyrinthe("zeldiablo\\labySimple\\labyTest.txt");
+        laby = new Labyrinthe("labySimple\\labyTest.txt");
         // Vers le haut (3,1) : case libre
         laby.deplacerPerso("Haut"); // (3,1)
         laby.deplacerPerso("Haut"); // (3,0) mur
@@ -32,7 +32,7 @@ public class testLaby {
 
     @Test
     public void testDeplacementVersMonstre() throws IOException{
-        laby = new Labyrinthe("zeldiablo\\labySimple\\labyTest.txt");
+        laby = new Labyrinthe("labySimple\\labyTest.txt");
         // Depuis (3,2), va à droite (4,2), puis en bas (4,3), où se trouve le monstre
         laby.deplacerPerso("Droite"); // (4,2)
         laby.deplacerPerso("Bas");    // (4,3) → monstre => doit rester à (4,2)
@@ -42,7 +42,7 @@ public class testLaby {
 
     @Test
     public void testPositionInitialeMonstre() throws IOException {
-        Labyrinthe laby = new Labyrinthe("zeldiablo\\labySimple\\labyTest.txt"); // fichier avec 'M' connu
+        Labyrinthe laby = new Labyrinthe("labySimple\\labyTest.txt"); // fichier avec 'M' connu
         List<Monstre> monstres = laby.getMonstres();
 
         assertEquals(1, monstres.size());
@@ -57,7 +57,7 @@ public class testLaby {
 
     @Test
     public void testAffichageMonstrePosition() throws IOException {
-        Labyrinthe laby = new Labyrinthe("zeldiablo\\labySimple\\labyTest.txt");
+        Labyrinthe laby = new Labyrinthe("labySimple\\labyTest.txt");
 
         List<Monstre> monstres = laby.getMonstres();
 
