@@ -92,4 +92,7 @@ public class Monstre {
         this.v -= degats;
     }
 
+    public int getV() {
+        return v;
+    }
 }
