@@ -1,9 +1,9 @@
 package gameLaby.laby;
 
 public class Monstre {
-    private static final int v = 100;
     private int x;
     private int y;
+    private int v;
 
     /**
      * Constructeur du monstre.
@@ -13,6 +13,7 @@ public class Monstre {
     public Monstre(int x, int y) {
         this.x = x;
         this.y = y;
+        this.v = 100;
     }
 
     /**
@@ -76,6 +77,10 @@ public class Monstre {
 
         this.x = newX;
         this.y = newY;
+    }
+
+    public void prendreDegat(int degats) {
+        this.v -= degats;
     }
 
 }
