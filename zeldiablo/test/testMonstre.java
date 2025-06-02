@@ -18,7 +18,7 @@ class testMonstre {
         Perso perso = new Perso(2, 2);
         Monstre monstre = new Monstre(0, 0);
 
-        monstre.deplacerMonstre(laby, perso);
+        monstre.deplacerMonstre(laby, perso, 0.5);
 
         // Vérifie que le monstre n'est pas sur le mur
         assertFalse(monstre.estSurPosition(1, 1));
