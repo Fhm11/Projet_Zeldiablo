@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 import moteurJeu.DessinJeu;
 import moteurJeu.Jeu;
 
+import java.util.List;
+
 
 public class LabyDessin implements DessinJeu {
 
@@ -43,10 +45,12 @@ public class LabyDessin implements DessinJeu {
         }
 
         // Dessiner le monstre
-        Monstre m = lj.getMonstre();
-        if (m != null) {
+        List<Monstre> monstres = lj.getMonstres();
+        if (monstres != null) {
             gc.setFill(Color.PURPLE);
-            gc.fillOval(m.getX() * dimension, m.getY() * dimension, dimension, dimension);
+            for (Monstre m : monstres) {
+                gc.fillOval(m.getX() * dimension, m.getY() * dimension, dimension, dimension);
+            }
         }
     }
 }
