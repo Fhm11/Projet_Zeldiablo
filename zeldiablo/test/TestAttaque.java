@@ -19,15 +19,16 @@ public class TestAttaque {
         assertFalse(monstres.isEmpty());
 
         Monstre m = monstres.get(0);
+
+        int pvAvant = m.getV();
+
         jeu.getPerso().setX(m.getX());
         jeu.getPerso().setY(m.getY() - 1);
 
         jeu.getPerso().attaquer(monstres);
 
-        int pvAvant = m.getV();
         assertTrue(m.estmort() || m.getV() < pvAvant);
     }
-
     @Test
     public void AttaquerMonstreMort() {
         LabyJeu jeu = new LabyJeu();
