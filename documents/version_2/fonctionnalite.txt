@@ -22,11 +22,4 @@
   - le monstre et le personnage ne peuvent pas se trouver sur la même case.
   - le personnage ne peut pas traverser la case du monstre
 
-4. Déplacer le monstre (optionnel en fonction avancée)
-- Descriptif :
-  - lorsque le jeu évolue, le monstre choisit une case adjacente de manière aléatoire et tente de s'y déplacer.
-- Critères de validation :
-  - le monstre doit se déplacer sur une case adjacente. Il considère les 4 directions de déplacement possibles.
-  - le monstre ne peut pas se déplacer sur mur. S'il tente de se déplacer sur cette case, il ne bouge pas.
-  - le monstre ne peut pas se trouver sur la même case que le personnage.
 
