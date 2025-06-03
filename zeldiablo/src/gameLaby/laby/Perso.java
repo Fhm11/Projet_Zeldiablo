@@ -108,4 +108,8 @@ public class Perso {
     public int getV() {
         return v;
     }
+
+    public void subirDegats(int degats) {
+        this.v -= degats;
+    }
 }
