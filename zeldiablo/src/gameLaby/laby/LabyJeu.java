@@ -16,6 +16,15 @@ public class LabyJeu implements Jeu {
             this.perso = this.laby.getPerso();
             this.monstres = this.laby.getMonstres();
 
+            for (Monstre m : monstres) {
+                double chance = Math.random();
+                if (chance < 0.3) {
+                    m.setStrategie(new AttaqueCritique());
+                } else {
+                    m.setStrategie(new AttaqueNormale());
+                }
+            }
+
         } catch (IOException e) {
             System.err.println("Erreur lors du chargement du labyrinthe : " + e.getMessage());
         }

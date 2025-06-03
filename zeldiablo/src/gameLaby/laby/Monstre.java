@@ -8,6 +8,8 @@ public class Monstre {
     private int y; // Position y du monstre
     private int v; // Vie du monstre
     private double t = 0; // Temps écoulé depuis le dernier déplacement
+    private StrategieComportementMonstre strategie;
+
 
     /**
      * Constructeur du monstre.
@@ -19,6 +21,10 @@ public class Monstre {
         this.x = x;
         this.y = y;
         this.v = 2;
+    }
+
+    public void setStrategie(StrategieComportementMonstre strategie) {
+        this.strategie = strategie;
     }
 
     /**
@@ -130,5 +136,12 @@ public class Monstre {
      */
     public int getV() {
         return v;
+    }
+
+    public boolean agir(Perso perso) {
+        if (strategie != null) {
+            return strategie.agir(this, perso);
+        }
+        return false;
     }
 }
