@@ -1,0 +1,43 @@
+@startuml
+participant "labyJ : LabyJeu" as LabyJeu
+participant "laby : Labyrinthe" as Labyrinthe
+participant "monstre : Monstre" as Monstre
+participant "Strategie : StrategieComportementMonstre" as StrategieComportementMonstre
+
+-> LabyJeu : agirAvecDelai(secondes)
+activate LabyJeu
+
+LabyJeu -> Labyrinthe : getMonstres()
+activate Labyrinthe
+Labyrinthe --> LabyJeu : listeMonstres
+deactivate Labyrinthe
+
+LabyJeu -> Labyrinthe : pj
+activate Labyrinthe
+Labyrinthe --> LabyJeu : perso
+deactivate Labyrinthe
+
+
+loop pour chaque Monstre m
+    LabyJeu -> Monstre : agirAvecDelai(laby, pj, secondes)
+    activate Monstre
+
+    Monstre -> Monstre : tempsDepuisDerniereAttaque += secondes
+    Monstre -> Monstre : deplacerMonstre(laby, perso, secondes)
+
+    Monstre -> StrategieComportementMonstre : agir(monstre, perso)
+    activate StrategieComportementMonstre
+    StrategieComportementMonstre --> Monstre : bool aAttaque
+    deactivate StrategieComportementMonstre
+
+    alt aAttaque == true
+        Monstre -> Monstre : tempsDepuisDerniereAttaque = 0
+    end
+
+    Monstre --> LabyJeu
+    deactivate Monstre
+end
+
+<-- LabyJeu
+deactivate LabyJeu
+@enduml
