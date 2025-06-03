@@ -1,0 +1,61 @@
+@startuml
+interface Jeu {
+    +void update(double secondes, Clavier clavier)
+}
+
+interface DessinJeu {
+    +void dessinerJeu(Jeu jeu, Canvas canvas)
+}
+
+class Labyrinthe {
+    -boolean[][] murs
+    -int largeur
+    -int hauteur
+
+    +boolean estMur(int x, int y)
+    +Perso getPerso()
+    +void chargerDepuisFichier(String fichier)
+    +Monstre getMonstre()
+    }
+
+class Perso {
+    -int x
+    -int y
+
+    +int getX()
+    +int getY()
+}
+
+class LabyJeu {
+
+    +void update(double secondes, Clavier clavier)
+    +Labyrinthe getLaby()
+    +Monstre getMonstre()
+    +Perso getPerso()
+}
+
+class LabyDessin {
+    +void dessinerJeu(Jeu jeu, Canvas canvas)
+}
+
+class MainLaby {
+    +static void main(String[] args)
+}
+
+class Monstre{
+    -int x
+    -int y
+    + int getY()
+    + int getX()
+    + boolean estMort()
+}
+
+Labyrinthe --> "1" Monstre : -monstre
+Labyrinthe --> "1" Perso : -perso
+LabyJeu --> "1" Labyrinthe : -laby
+LabyDessin --> "1" LabyJeu : utilise
+MainLaby --> "1" LabyJeu : crée
+MainLaby --> "1" LabyDessin : crée
+Jeu <|.. LabyJeu
+DessinJeu <|.. LabyDessin
+@enduml
