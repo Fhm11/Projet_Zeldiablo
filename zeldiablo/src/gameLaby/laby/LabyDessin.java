@@ -12,6 +12,22 @@ import java.util.List;
 
 public class LabyDessin implements DessinJeu {
 
+    private void dessinerBarreVie(GraphicsContext gc, int x, int y, int dimension, int vieActuelle, int vieMax, Color couleurFond, Color couleurVie) {
+        int largeurBarre = dimension;
+        int hauteurBarre = 5;
+        int posX = x * dimension;
+        int posY = y * dimension - hauteurBarre - 2;
+
+        double pourcentageVie = Math.max(0, (double) vieActuelle / vieMax);
+
+        gc.setFill(couleurFond);
+        gc.fillRect(posX, posY, largeurBarre, hauteurBarre);
+
+        gc.setFill(couleurVie);
+        gc.fillRect(posX, posY, largeurBarre * pourcentageVie, hauteurBarre);
+    }
+
+
     @Override
     public void dessinerJeu(Jeu jeu, Canvas canvas) {
         LabyJeu lj = (LabyJeu) jeu;
@@ -41,14 +57,16 @@ public class LabyDessin implements DessinJeu {
         if (p != null) {
             gc.setFill(Color.RED);
             gc.fillOval(p.getX() * dimension, p.getY() * dimension, dimension, dimension);
+            dessinerBarreVie(gc, p.getX(), p.getY(), dimension, p.getV(), 5, Color.GRAY, Color.GREEN);
         }
 
         // Dessiner le monstre
         List<Monstre> monstres = lj.getMonstres();
         if (monstres != null) {
-            gc.setFill(Color.PURPLE);
             for (Monstre m : monstres) {
+                gc.setFill(Color.PURPLE);
                 gc.fillOval(m.getX() * dimension, m.getY() * dimension, dimension, dimension);
+                dessinerBarreVie(gc, m.getX(), m.getY(), dimension, m.getV(), 2, Color.GRAY, Color.ORANGERED);
             }
         }
     }
