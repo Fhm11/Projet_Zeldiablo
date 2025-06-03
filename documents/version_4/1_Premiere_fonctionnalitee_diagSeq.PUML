@@ -1,0 +1,51 @@
+@startuml
+
+title Diagramme de sequence premiere fonctionnalitee attaquer
+
+participant "main : MainLaby" as main
+participant "jeu : LabyJeu" as jeu
+participant "laby : Labyrinthe" as laby
+participant "perso : Perso" as perso
+participant "monstre : Monstre" as monstre
+participant "amulette : Amulette" as amulette
+
+main -> jeu : new LabyJeu()
+activate main
+activate jeu
+
+jeu -> laby : new Labyrinthe(fichierLaby)
+activate laby
+
+alt caractère lu == 'P'
+    laby -> perso : new Perso(x, y)
+    activate perso
+    perso -> perso : attaquer(List<Monstre>monstres)
+    laby -> laby : this.pj = perso
+    perso --> laby
+    deactivate perso
+end
+
+alt caractère lu == 'M'
+    laby -> laby : if (this.pj != null && this.pj.x == x && this.pj.y == y)
+    laby -> laby : throw Error("Le monstre ne peut pas être sur la même case que le personnage !")
+    
+    laby -> monstre : new Monstre(x, y)
+    activate monstre
+    monstre -> monstre : deplacerMonstre(laby, perso)
+    laby -> laby : this.monstre = monstre
+    monstre --> laby
+    deactivate monstre
+    
+    laby -> amulette : new Amulette(x, y)
+    activate amulette
+    amulette --> laby
+    deactivate amulette
+end
+
+laby --> jeu
+deactivate laby
+jeu --> main
+deactivate jeu
+deactivate main
+@enduml
+
