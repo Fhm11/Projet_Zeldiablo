@@ -43,9 +43,11 @@ public class Labyrinthe {
     public boolean[][] murs;
 
     private List<Monstre> monstres;
+    private Amulette amulette;
 
-    // constructeur fait pour les test et cree un labyreithe d une longeuru et
-    // largeur evec 0 murs
+    /** Constructeur fait pour les tests et cree un labyrinthe d'une longueur et
+     * largeur avec 0 murs
+     */
     public Labyrinthe(int largeur, int hauteur) {
         murs = new boolean[largeur][hauteur];
         for (int x = 0; x < largeur; x++) {
@@ -54,6 +56,16 @@ public class Labyrinthe {
             }
         }
         this.monstres = new ArrayList<>();
+        int ax =1;
+        int ay =1;
+        while (getMur(ax, ay) || (pj != null && pj.getX() == ax && pj.getY() == ay)) {
+            ax++;
+            if (ax >= largeur) {
+                ax = 0;
+                ay++;
+            }
+        }
+        this.amulette = new Amulette(ax, ay);
     }
 
     /**
@@ -156,6 +168,19 @@ public class Labyrinthe {
 
         // ferme fichier
         bfRead.close();
+        int ax = 1;
+        int ay = 1;
+        while (getMur(ax, ay) || (pj != null && pj.getX() == ax && pj.getY() == ay)) {
+            ax++;
+            if (ax >= getLength()) {
+                ax = 0;
+                ay++;
+            }
+            if (ay >= getLengthY()) {
+                throw new Error("Impossible de placer l'amulette : aucune case vide disponible");
+            }
+        }
+        this.amulette = new Amulette(ax, ay);
     }
 
     /**
@@ -265,6 +290,14 @@ public class Labyrinthe {
      */
     public void setMur(int x, int y, boolean estMur) {
         murs[x][y] = estMur;
+    }
+
+    /**
+     * Getter pour l'amulette
+     * @return l'amulette
+     */
+    public Amulette getAmulette() {
+        return this.amulette;
     }
 
 }

@@ -69,5 +69,15 @@ public class LabyDessin implements DessinJeu {
                 dessinerBarreVie(gc, m.getX(), m.getY(), dimension, m.getV(), 2, Color.GRAY, Color.ORANGERED);
             }
         }
+
+        //Dessiner l'amulette
+        Amulette am = lj.getLaby().getAmulette();
+        if (am != null) {
+            gc.setFill(Color.GOLD);
+            gc.fillOval(am.getX() * dimension + dimension * 0.25,
+                    am.getY() * dimension + dimension * 0.25,
+                    dimension * 0.5,
+                    dimension * 0.5);
+        }
     }
 }

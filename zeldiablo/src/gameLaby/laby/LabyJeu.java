@@ -12,9 +12,10 @@ public class LabyJeu implements Jeu {
 
     public LabyJeu() {
         try {
-            this.laby = new Labyrinthe("labySimple\\laby1.txt");
+            this.laby = new Labyrinthe("labySimple/laby1.txt");
             this.perso = this.laby.getPerso();
             this.monstres = this.laby.getMonstres();
+
         } catch (IOException e) {
             System.err.println("Erreur lors du chargement du labyrinthe : " + e.getMessage());
         }
