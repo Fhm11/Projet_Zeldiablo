@@ -87,9 +87,10 @@ public class LabyDessin implements DessinJeu {
         }
 
         // effet degat perso
-        if (p.afficherEffetDegat()) {
+        if (p.getV() > 0 && p.afficherEffetDegat()) {
             dessinerEffetAttaque(gc, p.getX() * dimension, p.getY() * dimension, dimension);
         }
+
 
 
         if (p.possedeAmulette()) {
@@ -111,11 +112,8 @@ public class LabyDessin implements DessinJeu {
                 dessinerBarreVie(gc, m.getX(), m.getY(), dimension, m.getV(), 2, Color.GRAY, Color.ORANGERED);
                 // effet degat monstre
                 if (m.afficherEffetDegat()) {
-                    if(m.estmort()){
-                        return;
-                    }else{
                     dessinerEffetAttaque(gc, m.getX() * dimension, m.getY() * dimension, dimension);
-                    }
+
                 }
             }
         }
