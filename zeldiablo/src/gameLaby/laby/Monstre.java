@@ -18,7 +18,7 @@ public class Monstre {
     public Monstre(int x, int y) {
         this.x = x;
         this.y = y;
-        this.v = 100;
+        this.v = 2;
     }
 
     /**

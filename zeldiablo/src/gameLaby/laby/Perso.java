@@ -21,7 +21,7 @@ public class Perso {
     public Perso(int dx, int dy) {
         this.x = dx;
         this.y = dy;
-        this.v = 100;
+        this.v = 5;
     }
 
     /**
@@ -53,7 +53,7 @@ public class Perso {
                     (mx == this.x && my == this.y - 1); // haut
 
             if (estAdjacent) {
-                m.prendreDegat(100);
+                m.prendreDegat(1);
             }
         }
     }
