@@ -49,6 +49,7 @@ public class LabyJeu implements Jeu {
         for (Monstre m : monstres) {
             if (!m.estmort()) {
                 m.deplacerMonstre(laby, perso, secondes);
+                m.agir(perso);
             }
         }
         if (clavier.espace && !perso.estmort()) {
