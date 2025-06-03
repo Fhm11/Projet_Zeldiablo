@@ -8,6 +8,7 @@ import java.util.List;
 public class Perso {
 
     private boolean aAmulette = false;
+    private boolean enAttaque = false;
 
     /**
      * position du personnage
@@ -109,6 +110,7 @@ public class Perso {
     }
 
     public void subirDegats(int degats) {
+        enAttaque = true;
         this.v -= degats;
     }
 
@@ -122,5 +124,13 @@ public class Perso {
 
     public void setAmulette(boolean aAmulette) {
         this.aAmulette = aAmulette;
+    }
+
+    public void finAttaque() {
+        enAttaque = false;
+    }
+
+    public boolean estAttaque() {
+        return enAttaque;
     }
 }

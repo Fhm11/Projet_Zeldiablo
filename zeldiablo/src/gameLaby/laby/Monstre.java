@@ -9,6 +9,8 @@ public class Monstre {
     private StrategieComportementMonstre strategie;
     private double tempsDepuisDerniereAttaque = 0;
     private static final double DELAI_ATTAQUE = 1.0; // 1 seconde entre attaques
+    private boolean enAttaque = false;
+
 
     /**
      * Constructeur du monstre.
@@ -141,6 +143,7 @@ public class Monstre {
      * @param degats nombre de points de vie à retirer
      */
     public void prendreDegat(int degats) {
+        enAttaque = true;
         this.v -= degats;
     }
 
@@ -158,5 +161,12 @@ public class Monstre {
             return strategie.agir(this, perso);
         }
         return false;
+    }
+    public void finAttaque() {
+        enAttaque = false;
+    }
+
+    public boolean estAttaque() {
+        return enAttaque;
     }
 }

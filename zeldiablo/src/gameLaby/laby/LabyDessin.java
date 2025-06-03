@@ -32,6 +32,12 @@ public class LabyDessin implements DessinJeu {
         }
     }
 
+    private void dessinerEffetAttaque(GraphicsContext gc, double x, double y, double taille) {
+        gc.setFill(Color.rgb(255, 0, 0, 0.5)); // rouge semi-transparent
+        gc.fillOval(x, y, taille, taille);
+    }
+
+
     private void dessinerBarreVie(GraphicsContext gc, int x, int y, int dimension, int vieActuelle, int vieMax,
             Color couleurFond, Color couleurVie) {
         int largeurBarre = dimension;
@@ -78,6 +84,9 @@ public class LabyDessin implements DessinJeu {
             gc.drawImage(persoImage, p.getX() * dimension, p.getY() * dimension, dimension, dimension);
             dessinerBarreVie(gc, p.getX(), p.getY(), dimension, p.getV(), 5, Color.GRAY, Color.GREEN);
         }
+        if (p.estAttaque()) {
+            dessinerEffetAttaque(gc, p.getX() * dimension, p.getY() * dimension, dimension);
+        }
 
         if (p.possedeAmulette()) {
             double xImg = p.getX() * dimension;
@@ -94,6 +103,9 @@ public class LabyDessin implements DessinJeu {
                 } else {
                     gc.setFill(Color.PURPLE); // au cas où l'image est introuvable
                     gc.fillOval(m.getX() * dimension, m.getY() * dimension, dimension, dimension);
+                }
+                if (m.estAttaque()) {
+                    dessinerEffetAttaque(gc, m.getX() * dimension, m.getY() * dimension, dimension);
                 }
                 dessinerBarreVie(gc, m.getX(), m.getY(), dimension, m.getV(), 2, Color.GRAY, Color.ORANGERED);
             }
