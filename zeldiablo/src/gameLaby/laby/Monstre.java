@@ -4,12 +4,11 @@ package gameLaby.laby;
  * Classe représentant un monstre
  */
 public class Monstre {
-    private int x; // Position x du monstre
-    private int y; // Position y du monstre
-    private int v; // Vie du monstre
+    private int x, y, v; // Position x, position y et vie du monstre
     private double t = 0; // Temps écoulé depuis le dernier déplacement
     private StrategieComportementMonstre strategie;
-
+    private double tempsDepuisDerniereAttaque = 0;
+    private static final double DELAI_ATTAQUE = 1.0; // 1 seconde entre attaques
 
     /**
      * Constructeur du monstre.
@@ -25,6 +24,22 @@ public class Monstre {
 
     public void setStrategie(StrategieComportementMonstre strategie) {
         this.strategie = strategie;
+    }
+
+    public void agirAvecDelai(Labyrinthe laby, Perso perso, double secondes) {
+        // 1 : Mettre à jour le cooldown
+        tempsDepuisDerniereAttaque += secondes;
+
+        // 2 : Déplacer le monstre
+        deplacerMonstre(laby, perso, secondes);
+
+        // 3 : Attaquer si adjacent et cooldown écoulé
+        if (tempsDepuisDerniereAttaque >= DELAI_ATTAQUE) {
+            boolean aAttaque = strategie.agir(this, perso);
+            if (aAttaque) {
+                tempsDepuisDerniereAttaque = 0;
+            }
+        }
     }
 
     /**
