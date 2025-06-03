@@ -7,3 +7,36 @@ Critères de validation :
 - Le menu propose deux options jouer ou quitter.
 - Le menu s'affiche dans la même JFrame que le rendu du jeu.
 - Pendant le menu, le jeu n'est pas créé et ne tourne pas.
+
+2. Affichage des sprites (héros, monstres, amulette)
+Plutôt que d’afficher les éléments du jeu comme des lettres ou des rond basiques, des sprites (images) sont utilisés pour représenter le héros, les monstres et l’amulette.
+
+Critères de validation :
+Chaque élément possède un sprite distinct (héros, monstre, amulette).
+Le sprite du héros s’affiche à sa position actuelle dans le labyrinthe.
+Les sprites des monstres s’affichent correctement aux positions des monstres.
+L’amulette est visible  et quand elle est rammasser elle s emet au dessus.
+Les sprites sont chargés depuis des fichiers image.
+
+3. Affichage d’un cercle rouge lors d’une attaque
+Lorsqu’un héros ou un monstre se fait attaquer, un cercle rouge apparaît autour de lui pendant 1 seconde pour indiquer qu’un coup a été pris.
+
+Critères de validation :
+Le cercle rouge s’affiche précisément sur la apersonne attaque.
+Le cercle est visible que 1 seconde.
+Le cercle ne s'affiche pas si le personnage est mort.
+L’effet est juste visuel et indicatif
+
+4. Ajout d'une barre de vie pour les personnages
+Chaque personnage (héros ou monstre) affiche une barre de vie au-dessus de lui, représentant sa vie.
+
+Critères de validation :
+La barre est visible uniquement pour tout le monde.
+La longueur de la barre en couleur est proportionnelle aux points de vie restants.
+La barre se met à jour à chaque attaque.
+La barre est rouge/vert sur fond gris
+
+
+
+
+
