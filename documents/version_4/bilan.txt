@@ -1,1 +1,1 @@
-ajout barre de vie monstre et perso
+ajout barre de vie monstre et perso methode dessinerBarreVie
