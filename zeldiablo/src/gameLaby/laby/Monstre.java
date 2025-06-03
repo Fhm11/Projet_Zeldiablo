@@ -45,6 +45,10 @@ public class Monstre {
         }
     }
 
+    public void resetCooldown() {
+        this.tempsDepuisDerniereAttaque = DELAI_ATTAQUE;
+    }
+
     /**
      * Retourne la position x du monstre.
      * 
@@ -168,5 +172,20 @@ public class Monstre {
         return System.currentTimeMillis() - tempsDernierDegat < 1000;
     }
 
+    /**
+     * Modifie la position y du monstre.
+     * @param y nouvelle position y
+     */
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    /**
+     * Modifie la position x du monstre.
+     * @param x nouvelle position x
+     */
+    public void setX(int x) {
+        this.x = x;
+    }
 
 }

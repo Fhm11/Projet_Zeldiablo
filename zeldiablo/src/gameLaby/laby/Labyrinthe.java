@@ -1,311 +1,311 @@
-package gameLaby.laby;
+    package gameLaby.laby;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.*;
-
-/**
- * classe labyrinthe. represente un labyrinthe avec
- * <ul>
- * des murs
- * </ul>
- * <ul>
- * un personnage (x,y)
- * </ul>
- */
-public class Labyrinthe {
+    import java.io.BufferedReader;
+    import java.io.FileReader;
+    import java.io.IOException;
+    import java.util.*;
 
     /**
-     * Constantes char
+     * classe labyrinthe. represente un labyrinthe avec
+     * <ul>
+     * des murs
+     * </ul>
+     * <ul>
+     * un personnage (x,y)
+     * </ul>
      */
-    public static final char MUR = 'X';
-    public static final char PJ = 'P';
-    public static final char VIDE = '.';
-    public static final char MONSTRE = 'M';
+    public class Labyrinthe {
 
-    /**
-     * constantes actions possibles
-     */
-    public static final String HAUT = "Haut";
-    public static final String BAS = "Bas";
-    public static final String GAUCHE = "Gauche";
-    public static final String DROITE = "Droite";
+        /**
+         * Constantes char
+         */
+        public static final char MUR = 'X';
+        public static final char PJ = 'P';
+        public static final char VIDE = '.';
+        public static final char MONSTRE = 'M';
 
-    /**
-     * attribut du personnage
-     */
-    public Perso pj;
+        /**
+         * constantes actions possibles
+         */
+        public static final String HAUT = "Haut";
+        public static final String BAS = "Bas";
+        public static final String GAUCHE = "Gauche";
+        public static final String DROITE = "Droite";
 
-    /**
-     * les murs du labyrinthe
-     */
-    public boolean[][] murs;
+        /**
+         * attribut du personnage
+         */
+        public Perso pj;
 
-    private List<Monstre> monstres;
-    private Amulette amulette;
-    private int xDepart;
-    private int yDepart;
+        /**
+         * les murs du labyrinthe
+         */
+        public boolean[][] murs;
 
-    /** Constructeur fait pour les tests et cree un labyrinthe d'une longueur et
-     * largeur avec 0 murs
-     */
-    public Labyrinthe(int largeur, int hauteur) {
-        murs = new boolean[largeur][hauteur];
-        for (int x = 0; x < largeur; x++) {
-            for (int y = 0; y < hauteur; y++) {
-                murs[x][y] = false;
-            }
-        }
-        this.pj = new Perso(0, 0);
-        this.monstres = new ArrayList<>();
-        int ax =1;
-        int ay =1;
-        while (getMur(ax, ay) || (pj != null && pj.getX() == ax && pj.getY() == ay)) {
-            ax++;
-            if (ax >= largeur) {
-                ax = 0;
-                ay++;
-            }
-        }
-        this.amulette = new Amulette(ax, ay);
-    }
+        private List<Monstre> monstres;
+        private Amulette amulette;
+        private int xDepart;
+        private int yDepart;
 
-    /**
-     * retourne la case suivante selon une actions
-     *
-     * @param x      case depart
-     * @param y      case depart
-     * @param action action effectuee
-     * @return case suivante
-     */
-    static int[] getSuivant(int x, int y, String action) {
-        switch (action) {
-            case HAUT:
-                // on monte une ligne
-                y--;
-                break;
-            case BAS:
-                // on descend une ligne
-                y++;
-                break;
-            case DROITE:
-                // on augmente colonne
-                x++;
-                break;
-            case GAUCHE:
-                // on diminue colonne
-                x--;
-                break;
-            default:
-                throw new Error("action inconnue");
-        }
-        int[] res = { x, y };
-        return res;
-    }
-
-    /**
-     * charge le labyrinthe
-     *
-     * @param nom nom du fichier de labyrinthe
-     * @return labyrinthe cree
-     * @throws IOException probleme a la lecture / ouverture
-     */
-    public Labyrinthe(String nom) throws IOException {
-        // ouvrir fichier
-        FileReader fichier = new FileReader(nom);
-        BufferedReader bfRead = new BufferedReader(fichier);
-
-        int nbLignes, nbColonnes;
-        // lecture nblignes
-        nbLignes = Integer.parseInt(bfRead.readLine());
-        // lecture nbcolonnes
-        nbColonnes = Integer.parseInt(bfRead.readLine());
-
-        // creation labyrinthe vide
-        this.murs = new boolean[nbColonnes][nbLignes];
-        this.pj = null;
-        this.monstres = new ArrayList<>();
-
-        // lecture des cases
-        String ligne = bfRead.readLine();
-
-        // stocke les indices courants
-        int numeroLigne = 0;
-
-        // parcours le fichier
-        while (ligne != null) {
-
-            // parcours de la ligne
-            for (int colonne = 0; colonne < ligne.length(); colonne++) {
-                char c = ligne.charAt(colonne);
-                switch (c) {
-                    case MUR:
-                        this.murs[colonne][numeroLigne] = true;
-                        break;
-                    case VIDE:
-                        this.murs[colonne][numeroLigne] = false;
-                        break;
-                    case PJ:
-                        // pas de mur
-                        this.murs[colonne][numeroLigne] = false;
-                        // ajoute PJ
-                        this.pj = new Perso(colonne, numeroLigne);
-                        this.xDepart = pj.getX();
-                        this.yDepart = pj.getY();
-                        break;
-                    case MONSTRE:
-                        this.murs[colonne][numeroLigne] = false;
-                        if (this.pj != null && this.pj.x == colonne && this.pj.y == numeroLigne) {
-                            throw new Error("Le monstre ne peut pas être sur la même case que le personnage !");
-                        }
-                        this.monstres.add(new Monstre(colonne, numeroLigne));
-                        break;
-                    default:
-                        throw new Error("caractere inconnu " + c);
+        /** Constructeur fait pour les tests et cree un labyrinthe d'une longueur et
+         * largeur avec 0 murs
+         */
+        public Labyrinthe(int largeur, int hauteur) {
+            murs = new boolean[largeur][hauteur];
+            for (int x = 0; x < largeur; x++) {
+                for (int y = 0; y < hauteur; y++) {
+                    murs[x][y] = false;
                 }
             }
-
-            // lecture
-            ligne = bfRead.readLine();
-            numeroLigne++;
+            this.pj = new Perso(0, 0);
+            this.monstres = new ArrayList<>();
+            int ax =1;
+            int ay =1;
+            while (getMur(ax, ay) || (pj != null && pj.getX() == ax && pj.getY() == ay)) {
+                ax++;
+                if (ax >= largeur) {
+                    ax = 0;
+                    ay++;
+                }
+            }
+            this.amulette = new Amulette(ax, ay);
         }
 
-        // ferme fichier
-        bfRead.close();
-        int ax = 1;
-        int ay = 1;
-        while (getMur(ax, ay) || (pj != null && pj.getX() == ax && pj.getY() == ay)) {
-            ax++;
-            if (ax >= getLength()) {
-                ax = 0;
-                ay++;
+        /**
+         * retourne la case suivante selon une actions
+         *
+         * @param x      case depart
+         * @param y      case depart
+         * @param action action effectuee
+         * @return case suivante
+         */
+        static int[] getSuivant(int x, int y, String action) {
+            switch (action) {
+                case HAUT:
+                    // on monte une ligne
+                    y--;
+                    break;
+                case BAS:
+                    // on descend une ligne
+                    y++;
+                    break;
+                case DROITE:
+                    // on augmente colonne
+                    x++;
+                    break;
+                case GAUCHE:
+                    // on diminue colonne
+                    x--;
+                    break;
+                default:
+                    throw new Error("action inconnue");
             }
-            if (ay >= getLengthY()) {
-                throw new Error("Impossible de placer l'amulette : aucune case vide disponible");
+            int[] res = { x, y };
+            return res;
+        }
+
+        /**
+         * charge le labyrinthe
+         *
+         * @param nom nom du fichier de labyrinthe
+         * @return labyrinthe cree
+         * @throws IOException probleme a la lecture / ouverture
+         */
+        public Labyrinthe(String nom) throws IOException {
+            // ouvrir fichier
+            FileReader fichier = new FileReader(nom);
+            BufferedReader bfRead = new BufferedReader(fichier);
+
+            int nbLignes, nbColonnes;
+            // lecture nblignes
+            nbLignes = Integer.parseInt(bfRead.readLine());
+            // lecture nbcolonnes
+            nbColonnes = Integer.parseInt(bfRead.readLine());
+
+            // creation labyrinthe vide
+            this.murs = new boolean[nbColonnes][nbLignes];
+            this.pj = null;
+            this.monstres = new ArrayList<>();
+
+            // lecture des cases
+            String ligne = bfRead.readLine();
+
+            // stocke les indices courants
+            int numeroLigne = 0;
+
+            // parcours le fichier
+            while (ligne != null) {
+
+                // parcours de la ligne
+                for (int colonne = 0; colonne < ligne.length(); colonne++) {
+                    char c = ligne.charAt(colonne);
+                    switch (c) {
+                        case MUR:
+                            this.murs[colonne][numeroLigne] = true;
+                            break;
+                        case VIDE:
+                            this.murs[colonne][numeroLigne] = false;
+                            break;
+                        case PJ:
+                            // pas de mur
+                            this.murs[colonne][numeroLigne] = false;
+                            // ajoute PJ
+                            this.pj = new Perso(colonne, numeroLigne);
+                            this.xDepart = pj.getX();
+                            this.yDepart = pj.getY();
+                            break;
+                        case MONSTRE:
+                            this.murs[colonne][numeroLigne] = false;
+                            if (this.pj != null && this.pj.x == colonne && this.pj.y == numeroLigne) {
+                                throw new Error("Le monstre ne peut pas être sur la même case que le personnage !");
+                            }
+                            this.monstres.add(new Monstre(colonne, numeroLigne));
+                            break;
+                        default:
+                            throw new Error("caractere inconnu " + c);
+                    }
+                }
+
+                // lecture
+                ligne = bfRead.readLine();
+                numeroLigne++;
+            }
+
+            // ferme fichier
+            bfRead.close();
+            int ax = 1;
+            int ay = 1;
+            while (getMur(ax, ay) || (pj != null && pj.getX() == ax && pj.getY() == ay)) {
+                ax++;
+                if (ax >= getLength()) {
+                    ax = 0;
+                    ay++;
+                }
+                if (ay >= getLengthY()) {
+                    throw new Error("Impossible de placer l'amulette : aucune case vide disponible");
+                }
+            }
+            this.amulette = new Amulette(ax, ay);
+        }
+
+        /**
+         * deplace le personnage en fonction de l'action.
+         * gere la collision avec les murs
+         *
+         * @param action une des actions possibles
+         */
+        public void deplacerPerso(String action) {
+            // case courante
+            int[] courante = { this.pj.x, this.pj.y };
+
+            // calcule case suivante
+            int[] suivante = getSuivant(courante[0], courante[1], action);
+
+            int xSuiv = suivante[0];
+            int ySuiv = suivante[1];
+
+            // vérifie que la case n'est pas un mur ET que ce n'est pas la case du monstre
+            if (!this.murs[xSuiv][ySuiv] && !estCaseOccupeeParMonstre(xSuiv, ySuiv)) {
+                this.pj.x = xSuiv;
+                this.pj.y = ySuiv;
+                if (amulette != null && amulette.getX() == xSuiv && amulette.getY() == ySuiv) {
+                    pj.ramasserAmulette();
+                    amulette = null;
+                }
             }
         }
-        this.amulette = new Amulette(ax, ay);
-    }
 
-    /**
-     * deplace le personnage en fonction de l'action.
-     * gere la collision avec les murs
-     *
-     * @param action une des actions possibles
-     */
-    public void deplacerPerso(String action) {
-        // case courante
-        int[] courante = { this.pj.x, this.pj.y };
-
-        // calcule case suivante
-        int[] suivante = getSuivant(courante[0], courante[1], action);
-
-        int xSuiv = suivante[0];
-        int ySuiv = suivante[1];
-
-        // vérifie que la case n'est pas un mur ET que ce n'est pas la case du monstre
-        if (!this.murs[xSuiv][ySuiv] && !estCaseOccupeeParMonstre(xSuiv, ySuiv)) {
-            this.pj.x = xSuiv;
-            this.pj.y = ySuiv;
-            if (amulette != null && amulette.getX() == xSuiv && amulette.getY() == ySuiv) {
-                pj.ramasserAmulette();
-                amulette = null;
+        public boolean estCaseOccupeeParMonstre(int x, int y) {
+            for (Monstre m : monstres) {
+                if (!m.estmort() && m.getX() == x && m.getY() == y) {
+                    return true;
+                }
             }
+            return false;
         }
-    }
 
-    public boolean estCaseOccupeeParMonstre(int x, int y) {
-        for (Monstre m : monstres) {
-            if (!m.estmort() && m.getX() == x && m.getY() == y) {
-                return true;
-            }
+        /**
+         * jamais fini
+         *
+         * @return fin du jeu
+         */
+        public boolean etreFini() {
+            return pj.possedeAmulette() && pj.getX() == xDepart && pj.getY() == yDepart;
         }
-        return false;
+
+        public void nettoyerMonstresMorts() {
+            monstres.removeIf(monstre -> monstre.estmort());
+        }
+
+        // ##################################
+        // GETTER
+        // ##################################
+
+        /**
+         * return taille selon Y
+         *
+         * @return
+         */
+        public int getLengthY() {
+            return murs[0].length;
+        }
+
+        /**
+         * Retourne la taille du labyrinthe selon X (nombre de colonnes).
+         *
+         * @return nombre de colonnes du labyrinthe
+         */
+        public int getLength() {
+            return murs.length;
+        }
+
+        /**
+         * return mur en (i,j)
+         *
+         * @param x
+         * @param y
+         * @return
+         */
+        public boolean getMur(int x, int y) {
+            // utilise le tableau de boolean
+            return this.murs[x][y];
+        }
+
+        /**
+         * Retourne le personnage du labyrinthe.
+         *
+         * @return le personnage
+         */
+        public Perso getPerso() {
+            return this.pj;
+        }
+
+        /**
+         * Retourne la liste des monstres présents dans le labyrinthe.
+         *
+         * @return liste des monstres
+         */
+        public List<Monstre> getMonstres() {
+            return this.monstres;
+        }
+
+        /**
+         * Indique si la case (x, y) est un mur.
+         *
+         * @param x abscisse de la case
+         * @param y ordonnée de la case
+         * @return true si la case est un mur, false sinon
+         */
+        public void setMur(int x, int y, boolean estMur) {
+            murs[x][y] = estMur;
+        }
+
+        /**
+         * Getter pour l'amulette
+         * @return l'amulette
+         */
+        public Amulette getAmulette() {
+            return this.amulette;
+        }
+
     }
-
-    /**
-     * jamais fini
-     *
-     * @return fin du jeu
-     */
-    public boolean etreFini() {
-        return pj.possedeAmulette() && pj.getX() == xDepart && pj.getY() == yDepart;
-    }
-
-    public void nettoyerMonstresMorts() {
-        monstres.removeIf(monstre -> monstre.estmort());
-    }
-
-    // ##################################
-    // GETTER
-    // ##################################
-
-    /**
-     * return taille selon Y
-     *
-     * @return
-     */
-    public int getLengthY() {
-        return murs[0].length;
-    }
-
-    /**
-     * Retourne la taille du labyrinthe selon X (nombre de colonnes).
-     *
-     * @return nombre de colonnes du labyrinthe
-     */
-    public int getLength() {
-        return murs.length;
-    }
-
-    /**
-     * return mur en (i,j)
-     *
-     * @param x
-     * @param y
-     * @return
-     */
-    public boolean getMur(int x, int y) {
-        // utilise le tableau de boolean
-        return this.murs[x][y];
-    }
-
-    /**
-     * Retourne le personnage du labyrinthe.
-     *
-     * @return le personnage
-     */
-    public Perso getPerso() {
-        return this.pj;
-    }
-
-    /**
-     * Retourne la liste des monstres présents dans le labyrinthe.
-     *
-     * @return liste des monstres
-     */
-    public List<Monstre> getMonstres() {
-        return this.monstres;
-    }
-
-    /**
-     * Indique si la case (x, y) est un mur.
-     *
-     * @param x abscisse de la case
-     * @param y ordonnée de la case
-     * @return true si la case est un mur, false sinon
-     */
-    public void setMur(int x, int y, boolean estMur) {
-        murs[x][y] = estMur;
-    }
-
-    /**
-     * Getter pour l'amulette
-     * @return l'amulette
-     */
-    public Amulette getAmulette() {
-        return this.amulette;
-    }
-
-}
