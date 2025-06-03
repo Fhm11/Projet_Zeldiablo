@@ -57,6 +57,7 @@ public class Labyrinthe {
                 murs[x][y] = false;
             }
         }
+        this.pj = new Perso(0, 0);
         this.monstres = new ArrayList<>();
         int ax =1;
         int ay =1;
