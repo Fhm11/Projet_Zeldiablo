@@ -8,6 +8,7 @@ import java.util.List;
 public class Perso {
 
     private boolean aAmulette = false;
+    private long tempsDernierDegat = 0;
 
     /**
      * position du personnage
@@ -110,6 +111,7 @@ public class Perso {
 
     public void subirDegats(int degats) {
         this.v -= degats;
+        tempsDernierDegat = System.currentTimeMillis();
     }
 
     public void ramasserAmulette() {
@@ -122,6 +124,14 @@ public class Perso {
 
     public void setAmulette(boolean aAmulette) {
         this.aAmulette = aAmulette;
+    }
+
+    public long getTempsDernierDegat() {
+        return tempsDernierDegat;
+    }
+
+    public boolean afficherEffetDegat() {
+        return System.currentTimeMillis() - tempsDernierDegat < 1000; 
     }
 
 
