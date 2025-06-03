@@ -27,12 +27,6 @@ Les monstres peuvent perdre de la vie et mourir. Lorsqu’ils meurent, ils dispa
 
 gestion point de vie monstre et joueur.
 
-Les montres et les perso ont mtn des sprite effet visuels.
-
-Les montres et les perso ont maintenant une barre de vie visible indiquant leur vie.
-
-Quand un perso ou un monstre ce fait attaquer un rond rouge indique qu il c est fait taper.
-
 Une amulette spawn a une position preciser le perso peut la ramasser  et quand il retourne a sa position de base la page se ferme il a gagner.
 
 L'amulette a un spritz.
