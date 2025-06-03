@@ -84,7 +84,6 @@ public class Perso {
 
     /**
      * Modifie la position y du personnage.
-     * 
      * @param y nouvelle position y
      */
     public void setY(int y) {
@@ -93,7 +92,6 @@ public class Perso {
 
     /**
      * Modifie la position x du personnage.
-     * 
      * @param x nouvelle position x
      */
     public void setX(int x) {
@@ -102,7 +100,6 @@ public class Perso {
 
     /**
      * Retourne la vie actuelle du personnage.
-     * 
      * @return la vie du personnage
      */
     public int getV() {
