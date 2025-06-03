@@ -53,7 +53,7 @@ public class Perso {
                     (mx == this.x && my == this.y - 1); // haut
 
             if (estAdjacent) {
-                m.prendreDegat(100);
+                m.prendreDegat(1);
             }
         }
     }
