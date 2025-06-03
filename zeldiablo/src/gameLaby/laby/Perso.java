@@ -21,7 +21,7 @@ public class Perso {
     public Perso(int dx, int dy) {
         this.x = dx;
         this.y = dy;
-        this.v = 100;
+        this.v = 5;
     }
 
     /**
