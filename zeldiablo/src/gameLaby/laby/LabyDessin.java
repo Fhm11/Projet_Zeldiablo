@@ -16,11 +16,6 @@ public class LabyDessin implements DessinJeu {
     private Image amuletteImage;
     private Image monstreImage;
     private Image persoImage;
-    private long tempsDebutEffetAttaque = 0;
-    private boolean effetEnCours = false;
-    private static final long DUREE_EFFET_MS = 100; // 0.1 seconde en millisecondes
-    private double effetX, effetY;
-    private int effetTaille;
 
 
     public LabyDessin() {
@@ -91,6 +86,11 @@ public class LabyDessin implements DessinJeu {
             dessinerBarreVie(gc, p.getX(), p.getY(), dimension, p.getV(), 5, Color.GRAY, Color.GREEN);
         }
 
+        // effet degat perso
+        if (p.afficherEffetDegat()) {
+            dessinerEffetAttaque(gc, p.getX() * dimension, p.getY() * dimension, dimension);
+        }
+
 
         if (p.possedeAmulette()) {
             double xImg = p.getX() * dimension;
@@ -109,6 +109,10 @@ public class LabyDessin implements DessinJeu {
                     gc.fillOval(m.getX() * dimension, m.getY() * dimension, dimension, dimension);
                 }
                 dessinerBarreVie(gc, m.getX(), m.getY(), dimension, m.getV(), 2, Color.GRAY, Color.ORANGERED);
+                // effet degat monstre
+                if (m.afficherEffetDegat()) {
+                    dessinerEffetAttaque(gc, m.getX() * dimension, m.getY() * dimension, dimension);
+                }
             }
         }
 

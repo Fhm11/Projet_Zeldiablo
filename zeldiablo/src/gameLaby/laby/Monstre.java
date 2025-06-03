@@ -9,6 +9,7 @@ public class Monstre {
     private StrategieComportementMonstre strategie;
     private double tempsDepuisDerniereAttaque = 0;
     private static final double DELAI_ATTAQUE = 1.0; // 1 seconde entre attaques
+    private long tempsDernierDegat = 0;
 
 
 
@@ -144,6 +145,7 @@ public class Monstre {
      */
     public void prendreDegat(int degats) {
         this.v -= degats;
+        tempsDernierDegat = System.currentTimeMillis();
     }
 
     /**
@@ -161,5 +163,10 @@ public class Monstre {
         }
         return false;
     }
+
+    public boolean afficherEffetDegat() {
+        return System.currentTimeMillis() - tempsDernierDegat < 1000;
+    }
+
 
 }
