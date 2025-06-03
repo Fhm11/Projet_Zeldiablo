@@ -1,6 +1,6 @@
 package gameLaby.laby;
 
-public class AttaqueCritique implements ComportementMonstre {
+public class AttaqueCritique implements StrategieComportementMonstre {
 
     @Override
     public boolean agir(Monstre monstre, Perso perso) {

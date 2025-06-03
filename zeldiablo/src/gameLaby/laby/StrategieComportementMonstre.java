@@ -1,6 +1,6 @@
 package gameLaby.laby;
 
-public interface ComportementMonstre {
+public interface StrategieComportementMonstre {
     /**
      * Fait agir le monstre sur le personnage s'il est adjacent.
      * @param monstre Le monstre concerné.
