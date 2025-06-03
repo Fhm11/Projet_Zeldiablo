@@ -308,4 +308,11 @@
             return this.amulette;
         }
 
+        public int getxDepart() {
+            return xDepart;
+        }
+
+        public int getyDepart() {
+            return yDepart;
+        }
     }

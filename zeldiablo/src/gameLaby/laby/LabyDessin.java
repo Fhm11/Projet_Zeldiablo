@@ -79,6 +79,10 @@ public class LabyDessin implements DessinJeu {
             }
         }
 
+        // Dessiner un cercle pour représenter l'entrée
+        gc.setFill(Color.BLACK);
+        gc.fillOval(laby.getxDepart() * dimension, laby.getyDepart() * dimension, dimension, dimension);
+
         // Dessiner le personnage
         Perso p = lj.getPerso();
         if (p != null) {
@@ -118,8 +122,7 @@ public class LabyDessin implements DessinJeu {
             }
         }
 
-
-        // Dessiner l'amulette (sur la map)
+        // Dessiner l'amulette
         Amulette am = lj.getLaby().getAmulette();
         if (am != null) {
             double xImg = am.getX() * dimension + dimension * 0.25;
