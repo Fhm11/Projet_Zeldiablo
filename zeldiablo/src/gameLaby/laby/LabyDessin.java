@@ -90,23 +90,7 @@ public class LabyDessin implements DessinJeu {
             gc.drawImage(persoImage, p.getX() * dimension, p.getY() * dimension, dimension, dimension);
             dessinerBarreVie(gc, p.getX(), p.getY(), dimension, p.getV(), 5, Color.GRAY, Color.GREEN);
         }
-        if (p.estAttaque()) {
-            if (!effetEnCours) {
-                effetEnCours = true;
-                tempsDebutEffetAttaque = System.currentTimeMillis();
-                effetX = p.getX() * dimension;
-                effetY = p.getY() * dimension;
-                effetTaille = dimension;
-            }
-        }
-        if (effetEnCours) {
-            long now = System.currentTimeMillis();
-            if (now - tempsDebutEffetAttaque <= DUREE_EFFET_MS) {
-                dessinerEffetAttaque(gc, effetX, effetY, effetTaille);
-            } else {
-                effetEnCours = false; // fin de l’effet
-            }
-        }
+
 
         if (p.possedeAmulette()) {
             double xImg = p.getX() * dimension;
@@ -123,23 +107,6 @@ public class LabyDessin implements DessinJeu {
                 } else {
                     gc.setFill(Color.PURPLE); // au cas où l'image est introuvable
                     gc.fillOval(m.getX() * dimension, m.getY() * dimension, dimension, dimension);
-                }
-                if (m.estAttaque()) {
-                    if (!effetEnCours) {
-                        effetEnCours = true;
-                        tempsDebutEffetAttaque = System.currentTimeMillis();
-                        effetX = m.getX() * dimension;
-                        effetY = m.getY() * dimension;
-                        effetTaille = dimension;
-                    }
-                }
-                if (effetEnCours) {
-                    long now = System.currentTimeMillis();
-                    if (now - tempsDebutEffetAttaque <= DUREE_EFFET_MS) {
-                        dessinerEffetAttaque(gc, effetX, effetY, effetTaille);
-                    } else {
-                        effetEnCours = false;
-                    }
                 }
                 dessinerBarreVie(gc, m.getX(), m.getY(), dimension, m.getV(), 2, Color.GRAY, Color.ORANGERED);
             }
