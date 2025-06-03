@@ -44,6 +44,8 @@ public class Labyrinthe {
 
     private List<Monstre> monstres;
     private Amulette amulette;
+    private int xDepart;
+    private int yDepart;
 
     /** Constructeur fait pour les tests et cree un labyrinthe d'une longueur et
      * largeur avec 0 murs
@@ -148,6 +150,8 @@ public class Labyrinthe {
                         this.murs[colonne][numeroLigne] = false;
                         // ajoute PJ
                         this.pj = new Perso(colonne, numeroLigne);
+                        this.xDepart = pj.getX();
+                        this.yDepart = pj.getY();
                         break;
                     case MONSTRE:
                         this.murs[colonne][numeroLigne] = false;
@@ -225,7 +229,7 @@ public class Labyrinthe {
      * @return fin du jeu
      */
     public boolean etreFini() {
-        return false;
+        return pj.possedeAmulette() && pj.getX() == xDepart && pj.getY() == yDepart;
     }
 
     public void nettoyerMonstresMorts() {

@@ -2,6 +2,8 @@ package gameLaby.laby;
 
 import java.io.IOException;
 import java.util.*;
+
+import javafx.application.Platform;
 import moteurJeu.Clavier;
 import moteurJeu.Jeu;
 
@@ -55,6 +57,10 @@ public class LabyJeu implements Jeu {
             perso.attaquer(monstres);
         }
         laby.nettoyerMonstresMorts();
+        if (laby.etreFini()) {
+            System.out.println("Victoire ! Vous avez trouvé l'amulette et êtes sorti du labyrinthe.");
+            Platform.exit();
+        }
 
     }
 
