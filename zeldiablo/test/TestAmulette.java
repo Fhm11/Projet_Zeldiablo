@@ -18,7 +18,7 @@ public class TestAmulette {
     }
 
     @Test
-    public void testAmulettePasPlaceeSurMur() {
+    public void testAmulettePlaceeSurMur() {
         LabyJeu jeu = new LabyJeu();
         Labyrinthe laby = jeu.getLaby();
         laby.setMur(2, 2, true);
@@ -26,5 +26,16 @@ public class TestAmulette {
         Amulette amuletteSurMur = new Amulette(2, 2);
 
         assertTrue(laby.getMur(amuletteSurMur.getX(), amuletteSurMur.getY()), "La case doit être un mur");
+    }
+    @Test
+    public void testRamasserAmulette() {
+        LabyJeu jeu = new LabyJeu();
+        Perso p = jeu.getPerso();
+        Amulette a = jeu.getLaby().getAmulette();
+        assertNotNull(a, "L'amulette doit être placée");
+        p.setX(a.getX());
+        p.setY(a.getY());
+        p.ramasserAmulette();
+        assertTrue(p.possedeAmulette(), "Le personnage doit avoir ramassé l'amulette");
     }
 }
