@@ -201,9 +201,12 @@ public class Labyrinthe {
 
         // vérifie que la case n'est pas un mur ET que ce n'est pas la case du monstre
         if (!this.murs[xSuiv][ySuiv] && !estCaseOccupeeParMonstre(xSuiv, ySuiv)) {
-            // on met à jour la position du personnage
             this.pj.x = xSuiv;
             this.pj.y = ySuiv;
+            if (amulette != null && amulette.getX() == xSuiv && amulette.getY() == ySuiv) {
+                pj.ramasserAmulette();
+                amulette = null;
+            }
         }
     }
 

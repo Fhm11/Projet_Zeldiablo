@@ -7,12 +7,29 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import moteurJeu.DessinJeu;
 import moteurJeu.Jeu;
+import javafx.scene.image.Image;
 
 import java.util.List;
+import java.util.Objects;
 
 public class LabyDessin implements DessinJeu {
+    private Image amuletteImage;
 
-    private void dessinerBarreVie(GraphicsContext gc, int x, int y, int dimension, int vieActuelle, int vieMax, Color couleurFond, Color couleurVie) {
+    public LabyDessin() {
+        try {
+            // Chemin vers ton image dans ressources, adapte ce chemin à ton projet
+            amuletteImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/amulette.png")));
+            if (amuletteImage.isError()) {
+                System.err.println("Erreur lors du chargement de l'image amulette.png");
+            }
+        } catch (Exception e) {
+            System.err.println("Exception lors du chargement de l'image : " + e.getMessage());
+            amuletteImage = null;
+        }
+    }
+
+    private void dessinerBarreVie(GraphicsContext gc, int x, int y, int dimension, int vieActuelle, int vieMax,
+            Color couleurFond, Color couleurVie) {
         int largeurBarre = dimension;
         int hauteurBarre = 5;
         int posX = x * dimension;
@@ -26,7 +43,6 @@ public class LabyDessin implements DessinJeu {
         gc.setFill(couleurVie);
         gc.fillRect(posX, posY, largeurBarre * pourcentageVie, hauteurBarre);
     }
-
 
     @Override
     public void dessinerJeu(Jeu jeu, Canvas canvas) {
@@ -60,6 +76,12 @@ public class LabyDessin implements DessinJeu {
             dessinerBarreVie(gc, p.getX(), p.getY(), dimension, p.getV(), 5, Color.GRAY, Color.GREEN);
         }
 
+        if (p.possedeAmulette()) {
+            double xImg = p.getX() * dimension;
+            double yImg = p.getY() * dimension - (dimension * 0.5); // au dessus du perso
+            gc.drawImage(amuletteImage, xImg, yImg, dimension * 0.5, dimension * 0.5);
+        }
+
         // Dessiner le monstre
         List<Monstre> monstres = lj.getMonstres();
         if (monstres != null) {
@@ -70,14 +92,13 @@ public class LabyDessin implements DessinJeu {
             }
         }
 
-        //Dessiner l'amulette
+        // Dessiner l'amulette (sur la map)
         Amulette am = lj.getLaby().getAmulette();
         if (am != null) {
-            gc.setFill(Color.GOLD);
-            gc.fillOval(am.getX() * dimension + dimension * 0.25,
-                    am.getY() * dimension + dimension * 0.25,
-                    dimension * 0.5,
-                    dimension * 0.5);
+            double xImg = am.getX() * dimension + dimension * 0.25;
+            double yImg = am.getY() * dimension + dimension * 0.25;
+            gc.drawImage(amuletteImage, xImg, yImg, dimension * 0.5, dimension * 0.5);
         }
+
     }
 }

@@ -32,4 +32,6 @@ public class Amulette {
     public int getY() {
         return y;
     }
+
+
 }
