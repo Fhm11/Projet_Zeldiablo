@@ -14,13 +14,17 @@ import java.util.Objects;
 
 public class LabyDessin implements DessinJeu {
     private Image amuletteImage;
+    private Image monstreImage;
+    private Image persoImage;
 
     public LabyDessin() {
         try {
             // Chemin vers ton image dans ressources, adapte ce chemin à ton projet
             amuletteImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/amulette.png")));
-            if (amuletteImage.isError()) {
-                System.err.println("Erreur lors du chargement de l'image amulette.png");
+            monstreImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/monstre.png")));
+            persoImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/perso.png")));
+            if (amuletteImage.isError() || monstreImage.isError()) {
+                System.err.println("Erreur lors du chargement de l'image");
             }
         } catch (Exception e) {
             System.err.println("Exception lors du chargement de l'image : " + e.getMessage());
@@ -71,8 +75,7 @@ public class LabyDessin implements DessinJeu {
         // Dessiner le personnage
         Perso p = lj.getPerso();
         if (p != null) {
-            gc.setFill(Color.RED);
-            gc.fillOval(p.getX() * dimension, p.getY() * dimension, dimension, dimension);
+            gc.drawImage(persoImage, p.getX() * dimension, p.getY() * dimension, dimension, dimension);
             dessinerBarreVie(gc, p.getX(), p.getY(), dimension, p.getV(), 5, Color.GRAY, Color.GREEN);
         }
 
@@ -86,11 +89,16 @@ public class LabyDessin implements DessinJeu {
         List<Monstre> monstres = lj.getMonstres();
         if (monstres != null) {
             for (Monstre m : monstres) {
-                gc.setFill(Color.PURPLE);
-                gc.fillOval(m.getX() * dimension, m.getY() * dimension, dimension, dimension);
+                if (monstreImage != null) {
+                    gc.drawImage(monstreImage, m.getX() * dimension, m.getY() * dimension, dimension, dimension);
+                } else {
+                    gc.setFill(Color.PURPLE); // au cas où l'image est introuvable
+                    gc.fillOval(m.getX() * dimension, m.getY() * dimension, dimension, dimension);
+                }
                 dessinerBarreVie(gc, m.getX(), m.getY(), dimension, m.getV(), 2, Color.GRAY, Color.ORANGERED);
             }
         }
+
 
         // Dessiner l'amulette (sur la map)
         Amulette am = lj.getLaby().getAmulette();

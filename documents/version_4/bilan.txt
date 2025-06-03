@@ -1,1 +1,2 @@
 ajout barre de vie monstre et perso methode dessinerBarreVie
+ajout de sprite mosntre hero amulette
