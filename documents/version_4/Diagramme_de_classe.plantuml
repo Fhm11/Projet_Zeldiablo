@@ -1,0 +1,150 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class Amulette {
+  + Amulette(int, int): 
+  - x: int
+  - y: int
+  + getY(): int
+  + getX(): int
+}
+class AttaqueCritique {
+  + AttaqueCritique(): 
+  + agir(Monstre, Perso): boolean
+  - estAdjacent(Monstre, Perso): boolean
+}
+class AttaqueNormale {
+  + AttaqueNormale(): 
+  - estAdjacent(Monstre, Perso): boolean
+  + agir(Monstre, Perso): boolean
+}
+class LabyDessin {
+  + LabyDessin(): 
+  - monstreImage: Image
+  - amuletteImage: Image
+  - effetTaille: int
+  - DUREE_EFFET_MS: long
+  - persoImage: Image
+  - effetX: double
+  - effetEnCours: boolean
+  - tempsDebutEffetAttaque: long
+  - effetY: double
+  - dessinerBarreVie(GraphicsContext, int, int, int, int, int, Color, Color): void
+  + dessinerJeu(Jeu, Canvas): void
+  - dessinerEffetAttaque(GraphicsContext, double, double, double): void
+}
+class LabyJeu {
+  + LabyJeu(): 
+  - laby: Labyrinthe
+  - monstres: List<Monstre>
+  - perso: Perso
+  + etreFini(): boolean
+  + getMonstres(): List<Monstre>
+  + getPerso(): Perso
+  + getLaby(): Labyrinthe
+  + init(): void
+  + update(double, Clavier): void
+}
+class Labyrinthe {
+  + Labyrinthe(int, int): 
+  + Labyrinthe(String): 
+  + MUR: char
+  - amulette: Amulette
+  + PJ: char
+  + DROITE: String
+  - yDepart: int
+  - xDepart: int
+  + BAS: String
+  + pj: Perso
+  - monstres: List<Monstre>
+  + HAUT: String
+  + VIDE: char
+  + MONSTRE: char
+  + GAUCHE: String
+  + murs: boolean[][]
+  + getMur(int, int): boolean
+  + getMonstres(): List<Monstre>
+  ~ getSuivant(int, int, String): int[]
+  + getLengthY(): int
+  + getPerso(): Perso
+  + nettoyerMonstresMorts(): void
+  + setMur(int, int, boolean): void
+  + deplacerPerso(String): void
+  + getAmulette(): Amulette
+  + getLength(): int
+  + estCaseOccupeeParMonstre(int, int): boolean
+  + etreFini(): boolean
+}
+class Main {
+  + Main(): 
+  + main(String[]): void
+}
+class MainLaby {
+  + MainLaby(): 
+  + main(String[]): void
+}
+class Monstre {
+  + Monstre(int, int): 
+  - t: double
+  - v: int
+  - tempsDepuisDerniereAttaque: double
+  - DELAI_ATTAQUE: double
+  - strategie: StrategieComportementMonstre
+  - y: int
+  - x: int
+  + deplacerMonstre(Labyrinthe, Perso, double): void
+  + agirAvecDelai(Labyrinthe, Perso, double): void
+  + getX(): int
+  + setStrategie(StrategieComportementMonstre): void
+  + estmort(): boolean
+  + agir(Perso): boolean
+  + prendreDegat(int): void
+  + getY(): int
+  + estSurPosition(int, int): boolean
+  + getV(): int
+}
+class Perso {
+  + Perso(int, int): 
+  ~ v: int
+  - aAmulette: boolean
+  ~ y: int
+  ~ x: int
+  + setX(int): void
+  + getV(): int
+  + etrePresent(int, int): boolean
+  + setY(int): void
+  + setAmulette(boolean): void
+  + estmort(): boolean
+  + subirDegats(int): void
+  + ramasserAmulette(): void
+  + possedeAmulette(): boolean
+  + getX(): int
+  + getY(): int
+  + attaquer(List<Monstre>): void
+}
+interface StrategieComportementMonstre << interface >> {
+  + agir(Monstre, Perso): boolean
+}
+
+AttaqueCritique               -[#008200,dashed]-^  StrategieComportementMonstre 
+AttaqueNormale                -[#008200,dashed]-^  StrategieComportementMonstre 
+LabyJeu                       -[#595959,dashed]->  AttaqueCritique              : "«create»"
+LabyJeu                       -[#595959,dashed]->  AttaqueNormale               : "«create»"
+LabyJeu                      "1" *-[#595959,plain]-> "laby\n1" Labyrinthe                   
+LabyJeu                       -[#595959,dashed]->  Labyrinthe                   : "«create»"
+LabyJeu                      "1" *-[#595959,plain]-> "monstres\n*" Monstre                      
+LabyJeu                      "1" *-[#595959,plain]-> "perso\n1" Perso                        
+Labyrinthe                    -[#595959,dashed]->  Amulette                     : "«create»"
+Labyrinthe                   "1" *-[#595959,plain]-> "amulette\n1" Amulette                     
+Labyrinthe                    -[#595959,dashed]->  Monstre                      : "«create»"
+Labyrinthe                   "1" *-[#595959,plain]-> "monstres\n*" Monstre                      
+Labyrinthe                   "1" *-[#595959,plain]-> "pj\n1" Perso                        
+Labyrinthe                    -[#595959,dashed]->  Perso                        : "«create»"
+Main                          -[#595959,dashed]->  Labyrinthe                   : "«create»"
+MainLaby                      -[#595959,dashed]->  LabyDessin                   : "«create»"
+MainLaby                      -[#595959,dashed]->  LabyJeu                      : "«create»"
+Monstre                      "1" *-[#595959,plain]-> "strategie\n1" StrategieComportementMonstre 
+@enduml
