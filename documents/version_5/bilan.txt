@@ -40,11 +40,20 @@ ajout de sprite mosntre hero amulette
 Tous les tests unitaires des fonctionnalités sont réussis.
 
 Difficultés rencontrées :
-gestion des collisions entre le joueur, les monstres et les murs, qui ont nécessité plusieurs ajustements.
 
-Synchronisation entre l'affichage graphique et la logique du jeu (surtout lors des déplacements rapides) car de base le mosntre bouger grace au fps et c ete impossible il bouger trop vite.
+Gestion des collisions entre le joueur, les monstres et les murs, qui ont nécessité plusieurs ajustements.
 
-Beaucoup de merge ont ete fait car on modifier les meme fichier et a chauqe fois fallait re pull et modif pour re push sa a ete p^lutot un truc embetant
+Synchronisation entre l'affichage graphique et la logique du jeu (surtout lors des déplacements rapides), car de base le monstre bougeait selon le FPS, donc il allait beaucoup trop vite.
+
+Beaucoup de merge ont été faits car on modifiait souvent les mêmes fichiers ; il fallait re-pull, corriger, puis re-push. 
+
+Afficher les sprites au bon endroit et bien les centrer a été galère au début aisni que le chemin pour fichier des images a chaque fois on les trouver pas.
+
+Le rond rouge qui s'affiche 1 seconde après une attaque a été un peu brouillon car il rester toujours sur le perso donc il a fallu mettre unn timer pour sa .
+
+Gérer les barres de vie sans qu’elles se superposent  ou qu’elles s’affichent mal avec le bon niveau de vie a été un peu complexe a faire.
+
+Trouver des test unitaire a faire pour la aprtie graphique
 
 Conclusion :
-l’application est jouable et respecte les fonctionnalites choisis qui elles sont fini donc pour la prochaine version nous ameliorerrons les points de vie du mosntre  et du joueur  et nous allons gerer le jeu victoire defaite.
+L’application est jouable et respecte les fonctionnalités choisies, qui sont toutes terminées.
