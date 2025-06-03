@@ -1,0 +1,5 @@
+1. Attaque des monstres
+Lorsqu'un monstre doit agir, si le monstre se trouve à coté du héros, alors il ne se déplace pas mais il attaque celui-ci.
+Critères de validation : 
+- Lorsque le monstre est à côté du joueur, il attaque et ne se déplace pas. Par défaut, le Héros perd 1 point de vie. 
+- Lorsque le monstre est loin du joueur, il n'attaque pas mais se déplace.
