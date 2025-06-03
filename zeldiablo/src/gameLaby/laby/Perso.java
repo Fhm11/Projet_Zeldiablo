@@ -122,16 +122,9 @@ public class Perso {
         return aAmulette;
     }
 
-    public void setAmulette(boolean aAmulette) {
-        this.aAmulette = aAmulette;
-    }
-
-    public long getTempsDernierDegat() {
-        return tempsDernierDegat;
-    }
 
     public boolean afficherEffetDegat() {
-        return System.currentTimeMillis() - tempsDernierDegat < 1000; 
+        return System.currentTimeMillis() - tempsDernierDegat < 1000;
     }
 
 

@@ -157,12 +157,7 @@ public class Monstre {
         return v;
     }
 
-    public boolean agir(Perso perso) {
-        if (strategie != null) {
-            return strategie.agir(this, perso);
-        }
-        return false;
-    }
+
 
     public boolean afficherEffetDegat() {
         return System.currentTimeMillis() - tempsDernierDegat < 1000;

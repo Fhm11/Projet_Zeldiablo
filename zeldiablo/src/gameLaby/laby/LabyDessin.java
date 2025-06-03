@@ -111,7 +111,11 @@ public class LabyDessin implements DessinJeu {
                 dessinerBarreVie(gc, m.getX(), m.getY(), dimension, m.getV(), 2, Color.GRAY, Color.ORANGERED);
                 // effet degat monstre
                 if (m.afficherEffetDegat()) {
+                    if(m.estmort()){
+                        return;
+                    }else{
                     dessinerEffetAttaque(gc, m.getX() * dimension, m.getY() * dimension, dimension);
+                    }
                 }
             }
         }
