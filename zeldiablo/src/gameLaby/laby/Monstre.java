@@ -4,18 +4,17 @@ package gameLaby.laby;
  * Classe représentant un monstre
  */
 public class Monstre {
-    private int x, y, v; // Position x, position y et vie du monstre
-    private double t = 0; // Temps écoulé depuis le dernier déplacement
+    private int x, y, v;
+    private double t = 0;
     private StrategieComportementMonstre strategie;
     private double tempsDepuisDerniereAttaque = 0;
-    private static final double DELAI_ATTAQUE = 1.0; // 1 seconde entre attaques
+    private static final double DELAI_ATTAQUE = 1.0;
     private long tempsDernierDegat = 0;
 
 
 
     /**
      * Constructeur du monstre.
-     * 
      * @param x position en x
      * @param y position en y
      */
@@ -30,13 +29,8 @@ public class Monstre {
     }
 
     public void agirAvecDelai(Labyrinthe laby, Perso perso, double secondes) {
-        // 1 : Mettre à jour le cooldown
         tempsDepuisDerniereAttaque += secondes;
-
-        // 2 : Déplacer le monstre
         deplacerMonstre(laby, perso, secondes);
-
-        // 3 : Attaquer si adjacent et cooldown écoulé
         if (tempsDepuisDerniereAttaque >= DELAI_ATTAQUE) {
             boolean aAttaque = strategie.agir(this, perso);
             if (aAttaque) {
@@ -51,7 +45,6 @@ public class Monstre {
 
     /**
      * Retourne la position x du monstre.
-     * 
      * @return la position x du monstre
      */
     public int getX() {
@@ -60,7 +53,6 @@ public class Monstre {
 
     /**
      * Retourne la position y du monstre.
-     * 
      * @return la position y du monstre
      */
     public int getY() {
@@ -69,7 +61,6 @@ public class Monstre {
 
     /**
      * Vérifie si le monstre est à la même position qu'une position donnée.
-     * 
      * @param px position x testée
      * @param py position y testée
      * @return vrai si même position, faux sinon
@@ -80,7 +71,6 @@ public class Monstre {
 
     /**
      * Vérifie si le monstre est mort (vie inférieure ou égale à 0).
-     * 
      * @return vrai si le monstre est mort, faux sinon
      */
     public boolean estmort() {
@@ -93,9 +83,8 @@ public class Monstre {
      * écoulé.
      * Le monstre ne peut pas traverser les murs, ni aller sur la case du personnage
      * ou d'un autre monstre.
-     * 
-     * @param laby     le labyrinthe dans lequel se trouve le monstre
-     * @param perso    le personnage à éviter
+     * @param laby le labyrinthe dans lequel se trouve le monstre
+     * @param perso le personnage à éviter
      * @param secondes temps écoulé depuis la dernière mise à jour
      */
     public void deplacerMonstre(Labyrinthe laby, Perso perso, double secondes) {
@@ -107,15 +96,15 @@ public class Monstre {
         t += secondes;
 
         if (t < 0.5) {
-            return; // pas encore le temps de bouger
+            return; 
         }
 
         t = 0;
         int[][] directions = {
-                { 0, -1 }, // haut
-                { 0, 1 }, // bas
-                { -1, 0 }, // gauche
-                { 1, 0 } // droite
+                { 0, -1 }, 
+                { 0, 1 }, 
+                { -1, 0 }, 
+                { 1, 0 } 
         };
 
         int choix = (int) (Math.random() * directions.length);
@@ -144,7 +133,6 @@ public class Monstre {
 
     /**
      * Inflige des dégâts au monstre.
-     * 
      * @param degats nombre de points de vie à retirer
      */
     public void prendreDegat(int degats) {
@@ -154,7 +142,6 @@ public class Monstre {
 
     /**
      * Retourne la vie actuelle du monstre.
-     * 
      * @return la vie du monstre
      */
     public int getV() {
@@ -163,6 +150,10 @@ public class Monstre {
 
 
 
+    /**
+     * Temps du dernier dégât reçu
+     * @return temps du dernier dégât reçu
+     */
     public boolean afficherEffetDegat() {
         return System.currentTimeMillis() - tempsDernierDegat < 1000;
     }

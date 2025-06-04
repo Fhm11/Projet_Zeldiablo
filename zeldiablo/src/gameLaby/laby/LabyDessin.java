@@ -12,6 +12,10 @@ import javafx.scene.image.Image;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Classe responsable du dessin du jeu Labyrinthe sur un Canvas JavaFX.
+ * Gère l'affichage du labyrinthe, du personnage, des monstres, de l'amulette et des effets visuels.
+ */
 public class LabyDessin implements DessinJeu {
     private Image amuletteImage;
     private Image monstreImage;
@@ -19,11 +23,12 @@ public class LabyDessin implements DessinJeu {
     private Image murImage;
     private Image solImage;
 
-
-
+    /**
+     * Constructeur. Charge les images nécessaires à l'affichage du jeu.
+     * Affiche une erreur si une image ne peut pas être chargée.
+     */
     public LabyDessin() {
         try {
-            // Chemin vers ton image dans ressources, adapte ce chemin à ton projet
             amuletteImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/amulette.png")));
             monstreImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/monstre.png")));
             persoImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/perso.png")));
@@ -38,12 +43,29 @@ public class LabyDessin implements DessinJeu {
         }
     }
 
+    /**
+     * Dessine un effet visuel d'attaque sur la case spécifiée.
+     * @param gc le contexte graphique
+     * @param x position x en pixels
+     * @param y position y en pixels
+     * @param taille taille du cercle
+     */
     private void dessinerEffetAttaque(GraphicsContext gc, double x, double y, double taille) {
-        gc.setFill(Color.rgb(255, 0, 0, 0.5)); // rouge semi-transparent
+        gc.setFill(Color.rgb(255, 0, 0, 0.5));
         gc.fillOval(x, y, taille, taille);
     }
 
-
+    /**
+     * Dessine une barre de vie à la position spécifiée.
+     * @param gc le contexte graphique
+     * @param x position x en cases
+     * @param y position y en cases
+     * @param dimension taille d'une case en pixels
+     * @param vieActuelle points de vie actuels
+     * @param vieMax points de vie maximum
+     * @param couleurFond couleur de fond de la barre
+     * @param couleurVie couleur de la vie restante
+     */
     private void dessinerBarreVie(GraphicsContext gc, int x, int y, int dimension, int vieActuelle, int vieMax,
             Color couleurFond, Color couleurVie) {
         int largeurBarre = dimension;
@@ -60,6 +82,11 @@ public class LabyDessin implements DessinJeu {
         gc.fillRect(posX, posY, largeurBarre * pourcentageVie, hauteurBarre);
     }
 
+    /**
+     * Affiche le labyrinthe, le personnage, les monstres, l'amulette et les effets visuels.
+     * @param jeu le jeu à dessiner
+     * @param canvas le canvas sur lequel dessiner
+     */
     @Override
     public void dessinerJeu(Jeu jeu, Canvas canvas) {
         LabyJeu lj = (LabyJeu) jeu;
@@ -120,7 +147,7 @@ public class LabyDessin implements DessinJeu {
 
         if (p.possedeAmulette()) {
             double xImg = p.getX() * dimension;
-            double yImg = p.getY() * dimension - (dimension * 0.5); // au dessus du perso
+            double yImg = p.getY() * dimension - (dimension * 0.5);
             gc.drawImage(amuletteImage, xImg, yImg, dimension * 0.5, dimension * 0.5);
         }
 
@@ -131,11 +158,10 @@ public class LabyDessin implements DessinJeu {
                 if (monstreImage != null) {
                     gc.drawImage(monstreImage, m.getX() * dimension, m.getY() * dimension, dimension, dimension);
                 } else {
-                    gc.setFill(Color.PURPLE); // au cas où l'image est introuvable
+                    gc.setFill(Color.PURPLE);
                     gc.fillOval(m.getX() * dimension, m.getY() * dimension, dimension, dimension);
                 }
                 dessinerBarreVie(gc, m.getX(), m.getY(), dimension, m.getV(), 2, Color.GRAY, Color.ORANGERED);
-                // effet degat monstre
                 if (m.afficherEffetDegat()) {
                     dessinerEffetAttaque(gc, m.getX() * dimension, m.getY() * dimension, dimension);
 

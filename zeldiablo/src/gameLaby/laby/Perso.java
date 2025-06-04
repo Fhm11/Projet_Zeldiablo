@@ -3,7 +3,7 @@ package gameLaby.laby;
 import java.util.List;
 
 /**
- * gere un personnage situe en x,y
+ * Classe qui gère un personnage situe en x,y
  */
 public class Perso {
 
@@ -12,12 +12,12 @@ public class Perso {
 
     /**
      * position du personnage
+     * et sa vie
      */
     int x, y, v;
 
     /**
      * constructeur
-     *
      * @param dx position selon x
      * @param dy position selon y
      */
@@ -29,7 +29,6 @@ public class Perso {
 
     /**
      * permet de savoir si le personnage est en x,y
-     *
      * @param dx position testee
      * @param dy position testee
      * @return true si le personnage est bien en (dx,dy)
@@ -40,8 +39,7 @@ public class Perso {
     }
 
     /**
-     * Le personnage attaque les monstres autour de lui (haut, bas, gauche, droite).
-     *
+     * Le personnage attaque les monstres autour de lui (haut, bas, gauche, droite)
      * @param monstres liste des monstres présents dans le labyrinthe
      */
     public void attaquer(List<Monstre> monstres) {
@@ -109,20 +107,35 @@ public class Perso {
         return v;
     }
 
+    /**
+     * Inflige des dégâts au personnage.
+     * @param degats les points de vie à retirer
+     */
     public void subirDegats(int degats) {
         this.v -= degats;
         tempsDernierDegat = System.currentTimeMillis();
     }
 
+    /**
+     * Permet de ramasser l'amulette
+     */
     public void ramasserAmulette() {
         aAmulette = true;
     }
 
+    /**
+     * permet de savoir si le personnage possède l'amulette
+     * @return true si le personnage possède l'amulette, false sinon
+     */
     public boolean possedeAmulette() {
         return aAmulette;
     }
 
 
+    /**
+     * Vérifie si le temps écoulé depuis le dernier dégât est inférieur à 1000 ms.
+     * @return 
+     */
     public boolean afficherEffetDegat() {
         return System.currentTimeMillis() - tempsDernierDegat < 1000;
     }

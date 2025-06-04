@@ -11,8 +11,18 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.Modality;
 
+/**
+ * Classe utilitaire pour afficher une fenêtre de fin de jeu.
+ * Affiche une popup indiquant si le joueur a gagné ou perdu.
+ */
 public class FinDuJeu  {
 
+    /**
+     * Affiche une fenêtre popup indiquant la fin du jeu
+     * Affiche un message de victoire ou de défaite
+     * @param s la fenêtre principale du jeu à fermer à la fin
+     * @param v la victoire, true si le joueur a gagné, false s'il a perdu
+     */
     public static void afin(Stage s, boolean v) {
         Stage popup = new Stage();
         popup.initModality(Modality.APPLICATION_MODAL);
@@ -20,7 +30,7 @@ public class FinDuJeu  {
         popup.setResizable(false);
         Text message;
         if (v) {
-            message = new Text("🎉 BRAVO ! 🎉");
+            message = new Text(" BRAVO ! ");
             message.setFill(Color.GREEN);
         } else {
             message = new Text(" PERDU ! ");
@@ -59,7 +69,6 @@ public class FinDuJeu  {
         Scene scene = new Scene(root, 450, 250);
         popup.setScene(scene);
 
-        // Bloque la fenêtre principale tant que la popup est ouverte
         popup.show();
     }
 }

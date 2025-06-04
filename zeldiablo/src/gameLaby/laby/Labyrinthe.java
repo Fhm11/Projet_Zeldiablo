@@ -7,12 +7,7 @@
 
     /**
      * classe labyrinthe. represente un labyrinthe avec
-     * <ul>
-     * des murs
-     * </ul>
-     * <ul>
-     * un personnage (x,y)
-     * </ul>
+     * des murs un personnage (x,y)
      */
     public class Labyrinthe {
 
@@ -74,8 +69,8 @@
         /**
          * retourne la case suivante selon une actions
          *
-         * @param x      case depart
-         * @param y      case depart
+         * @param x case depart
+         * @param y case depart
          * @param action action effectuee
          * @return case suivante
          */
@@ -106,7 +101,6 @@
 
         /**
          * charge le labyrinthe
-         *
          * @param nom nom du fichier de labyrinthe
          * @return labyrinthe cree
          * @throws IOException probleme a la lecture / ouverture
@@ -191,7 +185,6 @@
         /**
          * deplace le personnage en fonction de l'action.
          * gere la collision avec les murs
-         *
          * @param action une des actions possibles
          */
         public void deplacerPerso(String action) {
@@ -225,8 +218,7 @@
         }
 
         /**
-         * jamais fini
-         *
+         * Fin quand le joueur a l'amulette et est revenu à la case de départ
          * @return fin du jeu
          */
         public boolean etreFini() {
@@ -308,10 +300,18 @@
             return this.amulette;
         }
 
+        /**
+         * Getter pour les coordonnées de départ du personnage
+         * @return les coordonnées de départ x
+         */
         public int getxDepart() {
             return xDepart;
         }
 
+        /**
+         * Getter pour les coordonnées de départ du personnage
+         * @return les coordonnées de départ y
+         */
         public int getyDepart() {
             return yDepart;
         }
