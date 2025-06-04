@@ -1,44 +1,20 @@
-ajout barre de vie monstre et perso methode dessinerBarreVie
-ajout de sprite mosntre hero amulette
-
-
 État de l'application :
-Le jeu Zeldiablo est fonctionnel. Voici les fonctionnalités faites :
+Le jeu Zeldiablo est fonctionnel. Voici les nouvelles fonctionnalités faites depuis la version 3:
 
-Affichage du personnage et des monstres à leurs positions initiales dans le labyrinthe.
+Apparition d'une amulette :
+Une amulette apparaît à une position précise, elle ne peut apparaître sur un mur et le héros et les monstres peuvent passer sur sa case.
 
-Déplacement du joueur à l’aide de z q s d.
+Ramassage de l'amulette :
+Le héros peut ramasser l'amulette en passant sur sa case, les monstres ne peuvent pas la récupérer.
 
-Déplacement aléatoire des monstres à intervalles réguliers 0.5 seconde.
+Fin du jeu avec l'amulette :
+Quand le joueur retourne à sa position de base, il gagne la partie et le jeu se ferme.
 
-Gestion des collisions :
-
-    entre monstres,
-
-    entre monstres et joueur,
-
-    entre monstres et murs.
-
-Affichage graphique du labyrinthe, du joueur et des monstres.
-
-Possibilité d’attaquer les monstres avec la touche Espace.
-
-Les monstres peuvent perdre de la vie et mourir. Lorsqu’ils meurent, ils disparaissent du laby.
-
-gestion point de vie monstre et joueur.
-
-Une amulette spawn a une position preciser le perso peut la ramasser  et quand il retourne a sa position de base la page se ferme il a gagner.
-
-L'amulette a un spritz.
+Patron Stratégie pour les attaques de monstres :
+Nous avons créé un patron stratégie car les monstres ont 2 attaques, une attaque normale et une attaque critique. Comme les deux classes d'attaques possèdent le même code, nous avons fait le patron stratégie. Ainsi le code n'est pas dupliqué en fonction de l'attaque utilisé.
 
 Tous les tests unitaires des fonctionnalités sont réussis.
 
 Difficultés rencontrées :
-gestion des collisions entre le joueur, les monstres et les murs, qui ont nécessité plusieurs ajustements.
+Nous n'avons pas rencontrés de difficultés sur ces fonctionnalités.
 
-Synchronisation entre l'affichage graphique et la logique du jeu (surtout lors des déplacements rapides) car de base le mosntre bouger grace au fps et c ete impossible il bouger trop vite.
-
-Beaucoup de merge ont ete fait car on modifier les meme fichier et a chauqe fois fallait re pull et modif pour re push sa a ete p^lutot un truc embetant
-
-Conclusion :
-l’application est jouable et respecte les fonctionnalites choisis qui elles sont fini donc pour la prochaine version nous ameliorerrons les points de vie du mosntre  et du joueur  et nous allons gerer le jeu victoire defaite.

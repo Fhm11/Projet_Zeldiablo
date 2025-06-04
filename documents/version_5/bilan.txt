@@ -1,59 +1,25 @@
 État de l'application :
-Le jeu Zeldiablo est fonctionnel. Voici les fonctionnalités faites :
+Le jeu Zeldiablo est fonctionnel. Voici les fonctionnalités faites pour la version 5:
 
-Affichage du personnage et des monstres à leurs positions initiales dans le labyrinthe.
 
-Déplacement du joueur à l’aide de z q s d.
+Les montres, le héros et l'amulette ont des sprites.
 
-Déplacement aléatoire des monstres à intervalles réguliers 0.5 seconde.
+Les montres et le héros ont maintenant une barre de vie visible indiquant leur vie, ils perdent de la vie à chaque attaques et la barre de vie descend passant jusqu'à devenir grise quand ils sont morts.Pour la barre de vie nous avons ajouter la méthode dessinerBarreVie.
 
-Gestion des collisions :
+Lorsque le héros ou les monstres se font attaquer, un rond rouge apparaît ce qui donne une effet visuel pour comprendre qu'il s'est fait attaquer.
 
-    entre monstres,
+Maintenant lorsque le héros gagne ou meurt, un pop-up apparaît indiquant que le jeu est gagné ou perdu. Cette fenêtre possède un bouton quitter qui permet de quitter le jeu.
 
-    entre monstres et joueur,
 
-    entre monstres et murs.
-
-Affichage graphique du labyrinthe, du joueur et des monstres.
-
-Possibilité d’attaquer les monstres avec la touche Espace.
-
-Les monstres peuvent perdre de la vie et mourir. Lorsqu’ils meurent, ils disparaissent du laby.
-
-gestion point de vie monstre et joueur.
-
-Une amulette spawn a une position preciser le perso peut la ramasser  et quand il retourne a sa position de base la page se ferme il a gagner.
-
-L'amulette a un spritz.
-
-Les montres et les perso ont mtn des sprite effet visuels.
-
-Les montres et les perso ont maintenant une barre de vie visible indiquant leur vie.
-
-Quand un perso ou un monstre ce fait attaquer un rond rouge indique qu il c est fait taper.
-
-ajout barre de vie monstre et perso methode dessinerBarreVie
-
-ajout de sprite mosntre hero amulette
-
-Tous les tests unitaires des fonctionnalités sont réussis.
+Les tests unitaires des fonctionnalités passent.
 
 Difficultés rencontrées :
 
-Gestion des collisions entre le joueur, les monstres et les murs, qui ont nécessité plusieurs ajustements.
-
-Synchronisation entre l'affichage graphique et la logique du jeu (surtout lors des déplacements rapides), car de base le monstre bougeait selon le FPS, donc il allait beaucoup trop vite.
-
-Beaucoup de merge ont été faits car on modifiait souvent les mêmes fichiers ; il fallait re-pull, corriger, puis re-push. 
-
-Afficher les sprites au bon endroit et bien les centrer a été galère au début aisni que le chemin pour fichier des images a chaque fois on les trouver pas.
-
-Le rond rouge qui s'affiche 1 seconde après une attaque a été un peu brouillon car il rester toujours sur le perso donc il a fallu mettre unn timer pour sa .
-
+Afficher les sprites au bon endroit et bien les centrer a été difficile au début ainsi que de trouver le bon chemin pour afficher les sprites.
+Le rond rouge qui s'affiche 1 seconde après une attaque restait toujours sur le héros ou les monstres donc il a fallu mettre un timer pour qu'il s'enlève au bout d'un certain temps.
 Gérer les barres de vie sans qu’elles se superposent  ou qu’elles s’affichent mal avec le bon niveau de vie a été un peu complexe a faire.
+Pour la gestion de la fin la principale difficulté était que le pop-up se fermait lorsqu'on appuyait sur le bouton quitter mais le jeu restait ouvert.
 
-Trouver des test unitaire a faire pour la aprtie graphique
 
 Conclusion :
 L’application est jouable et respecte les fonctionnalités choisies, qui sont toutes terminées.
