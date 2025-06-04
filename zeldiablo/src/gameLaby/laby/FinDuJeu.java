@@ -23,7 +23,7 @@ public class FinDuJeu  {
             message = new Text("🎉 BRAVO ! 🎉");
             message.setFill(Color.GREEN);
         } else {
-            message = new Text("💀 PERDU ! 💀");
+            message = new Text(" PERDU ! T NUL ");
             message.setFill(Color.DARKRED);
         }
         message.setFont(Font.font("Arial Black", 48));
