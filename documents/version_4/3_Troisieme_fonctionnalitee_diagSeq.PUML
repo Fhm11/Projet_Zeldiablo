@@ -1,0 +1,30 @@
+@startuml
+participant "labyJ : LabyJeu" as LabyJeu
+participant "laby : Labyrinthe" as Labyrinthe
+participant "perso : Perso" as Perso
+
+activate LabyJeu
+->LabyJeu : update()
+LabyJeu -> Labyrinthe : etreFini()
+alt etreFini == true
+activate Labyrinthe
+Labyrinthe -> Perso : possedeAmulette()
+activate Perso
+Perso --> Labyrinthe
+deactivate Perso
+Labyrinthe -> Perso : getX()==xDepart
+activate Perso
+Perso --> Labyrinthe
+deactivate Perso
+Labyrinthe -> Perso : getY()==yDepart
+activate Perso
+Perso --> Labyrinthe
+deactivate Perso
+
+end
+Labyrinthe --> LabyJeu : fermeture du jeu
+deactivate Labyrinthe
+<--LabyJeu
+deactivate LabyJeu
+@enduml
+
