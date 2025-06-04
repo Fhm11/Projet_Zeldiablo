@@ -1,0 +1,138 @@
+@startuml
+interface Jeu {
+    +void update(double secondes, Clavier clavier)
+}
+
+interface DessinJeu {
+    +void dessinerJeu(Jeu jeu, Canvas canvas)
+}
+interface StrategieComportementMonstre{
+    boolean agir(Monstre monstre, Perso perso)
+}
+class Labyrinthe {
+    -boolean[][] murs
+    -int yDepart
+    -int xDepart
+    
+
+    +boolean estMur(int x, int y)
+    +Perso getPerso()
+    +void chargerDepuisFichier(String fichier)
+    +void deplacerPerso(sgtring action)
+    +boolean etreFini()
+    +List<Monstre> getMonstres()
+    +void setmur(int x, int y, boolean estmur)
+    +boolean estCaseOccupeeMonstre(int x, int y)
+    +void nettoyerMonstresMorts()
+    +int getLenghtY()
+    +int getLenght()
+    +boolean getMur(int x, int y)
+    +Amulette getAmulette()
+    +int getxDepart()
+    +int getyDepart()
+    
+    
+    }
+
+class Perso {
+    -int x
+    -int y
+    -int v
+
+    +void deplacer(Direction dir, Labyrinthe laby)
+    +int getX()
+    +int getY()
+    +void attaquer(List<Monstre> monstres)
+    +boolean estmort()
+    +boolean etrePresent(int dx, int dy)
+    +void setY(int y)
+    +void setX(int x)
+    +void subirDegats(int degats)
+    +void ramasserAmulette()
+    +boolean possedeAmulette()
+    +boolean afficherEffetDegat()
+    
+}
+class AttaqueNormale{
++boolean agir(Monstre monstre, Perso perso)
+-boolean estAdjacent(Monstre m, Perso p)
+}
+
+class AttaqueCritique{
++boolean agir(Monstre monstre, Perso perso)
+-boolean estAdjacent(Monstre m, Perso p)
+}
+
+class LabyJeu {
+
+    +void update(double secondes, Clavier clavier)
+    +Labyrinthe getLaby()
+    +boolean etreFini()
+    +List<Monstre> getMonstres()
+    +Perso getPerso()
+    +void setStage(Stage stage)
+    +stage getStage()
+}
+
+class LabyDessin {
+    +void dessinerJeu(Jeu jeu, Canvas canvas)
+    -void dessineEffetAttaque(GraphicsContext gc, double x, double y, double taille)
+    -void dessinnerBarreVie(GraphicsContext gc, int x, int y, int dimension, int vieActuelle, int vieMax, Color couleurFond, Color couleurVie)
+}
+
+class MainLaby {
+    +static void main(String[] args)
+}
+
+class Amulette{
+    -int x
+    -int y
+    +int getX()
+    +int getY()
+
+}
+class FinDuJeu{
+    +afin(stage s, boolean v)
+}
+
+class Monstre{
+    -double t=0
+    -int v
+    -int x
+    -int y
+    -double t=0
+    -double tempsDepuisDernierAttaque=0
+    -static final double DELAI_ATTAQUE=1.0
+    -long  tempsDernierDegat=0
+    
+    +void setStrategie(StrategieComportementMonstre straregie)
+    +void agirAvecDelai(Labyrinthe laby,Perso perso, double secondes)
+    +void deplacerMonstre(Labyrinthe:laby, Perso:perso, double secondes)
+    +void resetCooldown()
+    +estSurPosition (int px, int py)
+    +boolean estSurPosition(int px, int py)
+    +int getY()
+    +int getX()
+    +int getV()
+    +void prendreDegat(int degats)
+    +boolean estmort()
+    +void deplacerMonstre(labyrinthe laby, Perso perso, double seconde)
+    +boolean afficherEffetDegat()
+    +void setY(int y)
+    +void setX(int x)
+}
+
+LabyJeu --> "1" FinDuJeu : utilise
+Labyrinthe --> "1" Amulette : -amulette
+AttaqueNormale ..|> StrategieComportementMonstre
+AttaqueCritique ..|> StrategieComportementMonstre
+Labyrinthe --> "1" Monstre : -monstre
+Labyrinthe --> "1" Perso : -perso
+LabyJeu --> "1" Labyrinthe : -laby
+LabyDessin --> "1" LabyJeu : utilise
+MainLaby --> "1" LabyJeu : crée
+MainLaby --> "1" LabyDessin : crée
+Jeu <|.. LabyJeu
+DessinJeu <|.. LabyDessin
+Monstre --> "*" StrategieComportementMonstre : strategie
+@enduml
