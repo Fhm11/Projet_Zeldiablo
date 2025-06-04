@@ -30,7 +30,7 @@ public class FinDuJeu  {
         popup.setResizable(false);
         Text message;
         if (v) {
-            message = new Text("🎉 BRAVO ! 🎉");
+            message = new Text(" BRAVO ! ");
             message.setFill(Color.GREEN);
         } else {
             message = new Text(" PERDU ! ");
