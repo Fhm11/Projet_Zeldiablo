@@ -6,7 +6,7 @@ import java.util.List;
 
 import java.io.IOException;
 
-public class testLaby {
+public class TestLaby {
 
     private Labyrinthe laby;
 

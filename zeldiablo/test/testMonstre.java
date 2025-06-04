@@ -2,7 +2,7 @@
     import gameLaby.laby.*;
     import org.junit.jupiter.api.Test;
 
-    class testMonstre {
+    class TestMonstre {
 
         @Test
         void testMonstrePasMort() {
