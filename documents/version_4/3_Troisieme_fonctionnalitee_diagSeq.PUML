@@ -2,6 +2,7 @@
 participant "labyJ : LabyJeu" as LabyJeu
 participant "laby : Labyrinthe" as Labyrinthe
 participant "perso : Perso" as Perso
+title Diagramme de sequence etreFini(ecran de fin)
 
 activate LabyJeu
 ->LabyJeu : update()

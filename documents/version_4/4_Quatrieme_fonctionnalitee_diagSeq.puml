@@ -3,6 +3,7 @@ participant "labyJ : LabyJeu" as LabyJeu
 participant "laby : Labyrinthe" as Labyrinthe
 participant "monstre : Monstre" as Monstre
 participant "Strategie : StrategieComportementMonstre" as StrategieComportementMonstre
+title Diagramme de sequence troisieme fonctionnalitee attaque du Monstre
 
 -> LabyJeu : agirAvecDelai(secondes)
 activate LabyJeu

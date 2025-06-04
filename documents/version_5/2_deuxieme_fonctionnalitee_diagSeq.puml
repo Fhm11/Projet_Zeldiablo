@@ -1,0 +1,62 @@
+@startuml
+title Diagramme de séquence – Affichage des effets d attaque
+
+participant "ld : LabyDessin" as D
+participant "lj : LabyJeu" as J
+participant "l : Labyrinthe" as L
+participant "m : Monstre" as M
+participant "gc : GraphicsContext" as GC
+participant "p : Perso" as P
+
+-> D : dessinerJeu(jeu, canvas)
+activate D
+D -> P :dessinerBarreVie()
+activate P
+P --> D
+deactivate P
+D-> P :dessinerEffetAttaque
+activate P
+P --> D
+deactivate P
+
+D -> M :dessinerBarreVie()
+activate M
+M --> D
+deactivate M
+D-> M :dessinerEffetAttaque
+activate M
+M --> D
+deactivate M
+D -> J : lj.getLaby()
+activate J
+J --> D : Labyrinthe
+deactivate J
+
+D -> J : lj.getMonstre()
+activate J
+J --> D : Monstre
+deactivate J
+
+D -> M : m.getX()
+activate M
+M --> D : x
+deactivate M
+
+D -> M : m.getY()
+activate M
+M --> D : y
+deactivate M
+
+D -> GC : gc.setFill(Color.PURPLE)
+activate GC
+GC --> D
+deactivate GC
+
+D -> GC : gc.fillOval(x * dimension, y * dimension, dimension, dimension)
+activate GC
+GC --> D
+deactivate GC
+<-- D
+deactivate D
+
+@enduml

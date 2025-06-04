@@ -1,5 +1,5 @@
 @startuml
-title Diagramme de séquence – Afficher le monstre
+title Diagramme de séquence – Affichage de la Barre de vie 
 
 participant "ld : LabyDessin" as D
 participant "lj : LabyJeu" as J

@@ -1,6 +1,6 @@
 @startuml
 
-title Diagramme de sequence premiere fonctionnalitee attaquer
+title Diagramme de sequence premiere fonctionnalitee ramasserAmulette
 
 participant "main : MainLaby" as main
 participant "jeu : LabyJeu" as jeu
