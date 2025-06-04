@@ -16,7 +16,11 @@ public class LabyJeu implements Jeu {
     private boolean f = false;
 
 
-
+    /**
+     * Constructeur du jeu.
+     * Initialise le labyrinthe, le personnage et les monstres.
+     * Attribue aléatoirement une stratégie d'attaque à chaque monstre.
+     */
     public LabyJeu() {
         try {
             this.laby = new Labyrinthe("labySimple/laby2.txt");
@@ -46,7 +50,6 @@ public class LabyJeu implements Jeu {
     }
     /**
      * methode mise a jour du jeu
-     * 
      * @param secondes temps ecoule depuis la derniere mise a jour
      * @param clavier  objet contenant l'état du clavier'
      */
