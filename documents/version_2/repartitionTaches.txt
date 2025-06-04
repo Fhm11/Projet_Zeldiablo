@@ -1,0 +1,4 @@
+Pour la répartition des tâches concernant cette itération, nous avons fonctionné de la manière suivante :
+- Nous n'avions pas besoin de réfléchir aux fonctionnalités que nous devions mettre en place, puisqu'elles nous étaient données. Il y a donc eu un gain de temps sur cette première itération guidée.
+- Toutefois, n'ayant pas fini le TP à temps, nous avons fait le choix de se séparer en 2 groupes. Marius et Cyprien pour finir l'itération du TP et Fahim et Arnaud pour se concentrer sur la première "vraie" itération de la SAE.
+- Pour chaque fonctionnalité, Cyprien a réalisé les différents diagrammes (de séquence et de classe). Marius, en s'appuyant sur les idées réfléchies à 2 lors de la réalisation des diagrammes, a commencé à concevoir la classe Monstre et tout le code qu'il fallait également ajouter. Il a également réalisé les classes de test.
