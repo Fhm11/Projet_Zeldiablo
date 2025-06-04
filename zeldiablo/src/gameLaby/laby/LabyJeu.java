@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.*;
 
 import javafx.application.Platform;
+import javafx.stage.Stage;
 import moteurJeu.Clavier;
 import moteurJeu.Jeu;
 
@@ -11,6 +12,10 @@ public class LabyJeu implements Jeu {
     private Labyrinthe laby;
     private Perso perso;
     private List<Monstre> monstres;
+    private Stage stage;
+    private boolean f = false;
+
+
 
     public LabyJeu() {
         try {
@@ -32,6 +37,13 @@ public class LabyJeu implements Jeu {
         }
     }
 
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
     /**
      * methode mise a jour du jeu
      * 
@@ -57,10 +69,17 @@ public class LabyJeu implements Jeu {
             perso.attaquer(monstres);
         }
         laby.nettoyerMonstresMorts();
-        if (laby.etreFini()) {
-            System.out.println("Victoire ! Vous avez trouvé l'amulette et êtes sorti du labyrinthe.");
-            Platform.exit();
+        // Affichage écran fin
+        if (!f) {
+            if (laby.etreFini() && stage != null) {
+                f = true;
+                fin.afin(stage, true);  // victoire
+            } else if (perso.getV() <= 0 && stage != null) {
+                f = true;
+                fin.afin(stage, false); // perdu
+            }
         }
+
 
     }
 

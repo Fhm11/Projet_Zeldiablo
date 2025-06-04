@@ -68,6 +68,12 @@ public class LabyDessin implements DessinJeu {
         int nbLignes = laby.getLengthY(); // axe Y
         int dimension = (int) (canvas.getWidth() / nbColonnes);
 
+        if (lj.getStage() == null) {
+            Stage stage = (Stage) canvas.getScene().getWindow();
+            lj.setStage(stage);
+        }
+
+
         for (int x = 0; x < nbColonnes; x++) {
             for (int y = 0; y < nbLignes; y++) {
                 if (laby.getMur(x, y)) {
@@ -126,6 +132,7 @@ public class LabyDessin implements DessinJeu {
             double yImg = am.getY() * dimension + dimension * 0.25;
             gc.drawImage(amuletteImage, xImg, yImg, dimension * 0.5, dimension * 0.5);
         }
+
 
     }
 }
