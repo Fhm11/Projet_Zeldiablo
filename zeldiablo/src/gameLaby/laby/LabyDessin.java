@@ -16,6 +16,9 @@ public class LabyDessin implements DessinJeu {
     private Image amuletteImage;
     private Image monstreImage;
     private Image persoImage;
+    private Image murImage;
+    private Image solImage;
+
 
 
     public LabyDessin() {
@@ -24,6 +27,8 @@ public class LabyDessin implements DessinJeu {
             amuletteImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/amulette.png")));
             monstreImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/monstre.png")));
             persoImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/perso.png")));
+            murImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/t.jpg")));
+            solImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/lave.jpg")));
             if (amuletteImage.isError() || monstreImage.isError()) {
                 System.err.println("Erreur lors du chargement de l'image");
             }
@@ -74,16 +79,26 @@ public class LabyDessin implements DessinJeu {
         }
 
 
+
         for (int x = 0; x < nbColonnes; x++) {
             for (int y = 0; y < nbLignes; y++) {
-                if (laby.getMur(x, y)) {
-                    gc.setFill(Color.BLACK);
+                if (murImage == null || solImage == null) {
+                    if (laby.getMur(x, y)) {
+                        gc.setFill(Color.BLACK);
+                    } else {
+                        gc.setFill(Color.WHITE);
+                    }
+                    gc.fillRect(x * dimension, y * dimension, dimension, dimension);
                 } else {
-                    gc.setFill(Color.WHITE);
+                    if (laby.getMur(x, y)) {
+                        gc.drawImage(murImage, x * dimension, y * dimension, dimension, dimension);
+                    } else {
+                        gc.drawImage(solImage, x * dimension, y * dimension, dimension, dimension);
+                    }
                 }
-                gc.fillRect(x * dimension, y * dimension, dimension, dimension);
             }
         }
+
 
         // Dessiner un cercle pour représenter l'entrée
         gc.setFill(Color.BLACK);
