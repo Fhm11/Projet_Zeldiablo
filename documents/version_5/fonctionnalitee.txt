@@ -12,7 +12,7 @@ Les sprites sont chargés depuis des fichiers image.
 Lorsqu’un héros ou un monstre se fait attaquer, un cercle rouge apparaît autour de lui pendant 1 seconde pour indiquer qu’un coup a été pris.
 
 Critères de validation :
-Le cercle rouge s’affiche précisément sur la apersonne attaque.
+Le cercle rouge s’affiche précisément sur la personne attaque.
 Le cercle est visible que 1 seconde.
 Le cercle ne s'affiche pas si le personnage est mort.
 L’effet est juste visuel et indicatif
@@ -30,10 +30,10 @@ La barre est rouge/vert sur fond gris
 Une fenêtre apparaît automatiquement à la fin de la partie (victoire ou défaite), indiquant le résultat au joueur.
 
 Critères de validation :
-La fenêtre s’affiche uniquement quand la partie est terminée.
-Elle bloque l’interaction tant qu’elle n’est pas fermer.
-un message clair.
-que la fenetre pop-up ferme aussi celle du jeu de base.
+- La fenêtre s’affiche uniquement quand la partie est terminée.
+- Elle bloque l’interaction tant qu’elle n’est pas fermer.
+  un message clair.
+- La fenetre pop-up ferme aussi celle du jeu de base.
 
 
 
