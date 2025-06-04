@@ -16,5 +16,4 @@ Nous avons créé un patron stratégie car les monstres ont 2 attaques, une atta
 Tous les tests unitaires des fonctionnalités sont réussis.
 
 Difficultés rencontrées :
-Nous n'avons pas rencontrés de difficultés sur ces fonctionnalités.
-
+Pour la classe de Test TestAttaqueMonstre, nous n'arrivons pas à valider le test. Quand on lance le jeu, on voit que la méthode agirAvecDelai marche mais toutefois dans le test à partir d'un fichier txt, le message est que le personnage ne perd pas de vie. Nous pensons que c'est à cause du fait que le monstre se déplace aléatoirement que ça ne marche pas mais même en forçant les positions initiales ça ne marche quand même pas.
