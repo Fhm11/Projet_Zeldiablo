@@ -73,10 +73,10 @@ public class LabyJeu implements Jeu {
         if (!f) {
             if (laby.etreFini() && stage != null) {
                 f = true;
-                fin.afin(stage, true);  // victoire
+                FinDuJeu.afin(stage, true);  // victoire
             } else if (perso.getV() <= 0 && stage != null) {
                 f = true;
-                fin.afin(stage, false); // perdu
+                FinDuJeu.afin(stage, false); // perdu
             }
         }
 

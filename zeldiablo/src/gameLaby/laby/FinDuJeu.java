@@ -9,7 +9,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.Modality;
 
-public class fin {
+public class FinDuJeu {
 
     public static void afin(Stage s, boolean v) {
         Stage pop = new Stage();
