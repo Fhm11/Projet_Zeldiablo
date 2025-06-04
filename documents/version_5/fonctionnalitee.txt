@@ -26,6 +26,15 @@ La longueur de la barre en couleur est proportionnelle aux points de vie restant
 La barre se met à jour à chaque attaque.
 La barre est rouge/vert sur fond gris
 
+4. Ajout d'une fenêtre de fin de jeu
+Une fenêtre apparaît automatiquement à la fin de la partie (victoire ou défaite), indiquant le résultat au joueur.
+
+Critères de validation :
+La fenêtre s’affiche uniquement quand la partie est terminée.
+Elle bloque l’interaction tant qu’elle n’est pas fermer.
+un message clair.
+que la fenetre pop-up ferme aussi celle du jeu de base.
+
 
 
 
