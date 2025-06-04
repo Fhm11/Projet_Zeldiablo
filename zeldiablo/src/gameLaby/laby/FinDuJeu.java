@@ -19,7 +19,7 @@ public class FinDuJeu {
         root.setAlignment(Pos.CENTER);
         Text message;
         if (v) {
-            message = new Text("v !");
+            message = new Text("VICTOIRE !");
         } else {
             message = new Text("PERDU !");
         }
